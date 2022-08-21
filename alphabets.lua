@@ -22,7 +22,7 @@ local function alphabet(tp, nm, ipa, cmn, uyghurs)
         ["nm"] = nm,
         ["ipa"] = ipa,
         ["cmn"] = cmn,
-        [LANGUAGES.UYGHURS] = uyghurs, {uas, ucs, uns, uls}
+        [LANGUAGES.UYGHURS] = uyghurs, -- {uas, ucs, uns, uls}
     }
     table.insert(infos, conf)
 end
