@@ -1,4 +1,17 @@
 --class-path src
 --dce full
 --main Converter
+
+--each
+
+--js output/converter.js
+--next
+
+--python output/converter.py
+--next
+
+--lua output/converter.lua
+-D lua-vanilla
+--next
+
 --interp

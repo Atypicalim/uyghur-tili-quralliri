@@ -2,29 +2,33 @@
     alphabets
 ]]
 
-local alphabets = {}
+local infos = {}
 
 local TYPES = {
+    MARKS = "MARKS",
     VOWELS = "VOWELS",
     CONSONANTS = "CONSONANTS",
     SEMIVOWELS = "SEMIVOWELS",
     COMPOUNDS = "COMPOUNDS",
 }
 
-local count = 0
 local LANGUAGES = {
     UYGHURS = "UYGHURS",
 }
 
-local function alphabet(tp, nm, ipa, cm, uyghurs)
-    count = count + 1
-    alphabets[nm] = {
+local function alphabet(tp, nm, ipa, cmn, uyghurs)
+    local conf = {
         ["tp"] = tp,
         ["nm"] = nm,
         ["ipa"] = ipa,
-        ["cm"] = cm,
-        [LANGUAGES.UYGHURS] = uyghurs,
+        ["cmn"] = cmn,
+        [LANGUAGES.UYGHURS] = uyghurs, {uas, ucs, uns, uls}
     }
+    table.insert(infos, conf)
+end
+
+local function M(...)
+    alphabet(TYPES.MARKS, ...)
 end
 
 local function V(...)
@@ -43,6 +47,20 @@ local function K(...)
     alphabet(TYPES.COMPOUNDS, ...)
 end
 
+-- Marks
+
+M(
+    "HEMZE",
+    "",
+    "",
+    {
+        "ئ",
+        "",
+        "",
+        ""
+    }
+)
+
 -- Vowels
 
 V(
@@ -50,7 +68,7 @@ V(
     "ɑ",
     "a",
     {
-        "ئا",
+        "ا",
         "a",
         "a",
         "a"
@@ -62,7 +80,7 @@ V(
     "æ",
     "ä",
     {
-        "ئە",
+        "ە",
         "ә",
         "ə",
         "e"
@@ -74,7 +92,7 @@ V(
     "",
     "e",
     {
-        "ئې",
+        "ې",
         "е",
         "e",
         "ë"
@@ -86,7 +104,7 @@ V(
     "",
     "i",
     {
-        "ئى",
+        "ى",
         "и",
         "i",
         "i"
@@ -98,7 +116,7 @@ V(
     "",
     "o",
     {
-        "ئو",
+        "و",
         "о",
         "o",
         "o"
@@ -110,7 +128,7 @@ V(
     "",
     "ö",
     {
-        "ئۆ",
+        "ۆ",
         "ө",
         "ɵ",
         "ö"
@@ -122,7 +140,7 @@ V(
     "",
     "u",
     {
-        "ئۇ",
+        "ۇ",
         "у",
         "u",
         "u"
@@ -134,7 +152,7 @@ V(
     "",
     "ü",
     {
-        "ئۈ",
+        "ۈ",
         "ү",
         "ü",
         "ü"
@@ -461,4 +479,113 @@ K(
 
 -- write to haxe
 
-print(count == 34)
+local alphabetContent = [[]]
+local ALPHABET_KEYS = {
+    nm = {"NAMES", "english name"},
+    tp = {"TYPES", "alphabet type"},
+    ipa = {"String", "reading sound"},
+    cmn = {"String", "common script"},
+    [LANGUAGES.UYGHURS] = {"Array<String>", "language script"},
+}
+local space = " "
+
+--
+
+local TEMPLATE_TYPES = [[
+// types
+enum TYPES {%s
+}
+]]
+local types = ""
+for k,v in pairs(TYPES) do
+    types = types .. "\n" .. space:rep(4) .. v .. ";";
+end
+local contentTypes = string.format(TEMPLATE_TYPES, types)
+alphabetContent = alphabetContent .. "\n" .. contentTypes
+
+-- 
+
+local TEMPLATE_LANGUAGES = [[
+// languages
+enum LANGUAGES {%s
+}
+]]
+local languages = ""
+for k,v in pairs(LANGUAGES) do
+    languages = languages .. "\n" .. space:rep(4) .. v .. ";";
+end
+local contentLanguages = string.format(TEMPLATE_LANGUAGES, languages)
+alphabetContent = alphabetContent .. "\n" .. contentLanguages
+
+--
+
+local TEMPLATE_NAME = [[
+// names
+enum NAMES {%s
+}
+]]
+local names = ""
+for k,v in pairs(infos) do
+    names = names .. "\n" .. space:rep(4) .. v.nm .. ";";
+end
+local contentNames = string.format(TEMPLATE_NAME, names)
+alphabetContent = alphabetContent .. "\n" .. contentNames
+
+--
+
+local TEMPLATE_ALPHABET = [[
+// alphabets
+typedef Alphabet = {%s
+}
+]]
+local alphabet = ""
+for k,v in pairs(ALPHABET_KEYS) do
+    alphabet = alphabet .. string.format("\n%svar %s : %s; // %s", space:rep(4), k, v[1], v[2])
+end
+local contentAlphabet = string.format(TEMPLATE_ALPHABET, alphabet)
+alphabetContent = alphabetContent .. "\n" .. contentAlphabet
+
+--
+
+local TEMPLATE_CONFIGS = [[
+// ALPHABETS
+var ALPHABETS : Map<NAMES, Alphabet> = [%s
+];
+]]
+local TEMPLATE_CONFIG = [[
+    // %s
+    NAMES.%s => {%s
+    },
+]]
+local TEMPLATE_PAIRS = [[%s : %s,]]
+local alphabets = ""
+for index,info in pairs(infos) do
+    local entry = ""
+    for key,_ in pairs(ALPHABET_KEYS) do
+        local value = info[key]
+        if key == "tp" then
+            value = string.format("TYPES.%s", value)
+        elseif key == "nm" then
+            value = string.format("NAMES.%s", value)
+        elseif is_table(value) then
+            local items = ""
+            for i,v in ipairs(value) do
+                items = items .. (i == 1 and string.format([["%s"]], v) or string.format([[, "%s"]], v))
+            end
+            value = string.format("[%s]", items)
+        else
+            value = string.format([["%s"]], value)
+        end
+        entry = entry .. "\n" .. space:rep(8) .. string.format(TEMPLATE_PAIRS, key, value)
+    end
+    local conf = string.format(TEMPLATE_CONFIG, info.nm, info.nm, entry)
+    alphabets = alphabets .. string.format("\n%s", conf)
+end
+local contenConfigs = string.format(TEMPLATE_CONFIGS, alphabets)
+alphabetContent = alphabetContent .. "\n" .. contenConfigs
+
+--
+function getAlphabets()
+    return alphabetContent
+end
+
