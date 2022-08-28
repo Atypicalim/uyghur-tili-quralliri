@@ -9,14 +9,26 @@ local CodeBuilder = require("./code_builder")
 local builder = CodeBuilder(false)
 local source = "./src/Converter.hx"
 
--- builder:setInput(source)
--- builder:handleMacro("//")
--- builder:setCallback(function(code, firsArg)
---     if firsArg == "ALPHABETS" then
---         return getAlphabets()
---     end
--- end)
--- builder:setOutput(source)
--- builder:start()
+local isSkip = false
+
+builder:setInput(source)
+builder:setComment("//")
+builder:handleMacro(false)
+builder:onMacro(function(code, command)
+    if command == "ALPHABETS_START" then
+        isSkip = true
+        return "// [M[ ALPHABETS_START ]M]"
+    elseif command == "ALPHABETS_END" then
+        isSkip = false
+        return getAlphabets() .. "// [M[ ALPHABETS_END ]M]"
+    end
+end)
+builder:onLine(function(line)
+    if not isSkip then
+        return line
+    end
+end)
+builder:setOutput(source)
+builder:start()
 
 os.execute("haxe ./build.hxml")
