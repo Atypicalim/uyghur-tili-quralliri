@@ -491,8 +491,7 @@ local space = " "
 
 --
 
-local TEMPLATE_TYPES = [[
-// types
+local TEMPLATE_TYPES = [[// types
 enum TYPES {%s
 }
 ]]
@@ -501,7 +500,7 @@ for k,v in pairs(TYPES) do
     types = types .. "\n" .. space:rep(4) .. v .. ";";
 end
 local contentTypes = string.format(TEMPLATE_TYPES, types)
-alphabetContent = alphabetContent .. "\n" .. contentTypes
+alphabetContent = alphabetContent .. "" .. contentTypes
 
 -- 
 
