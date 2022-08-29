@@ -386,6 +386,12 @@ var ALPHABETS : Map<NAMES, Alphabet> = [
 
 // [-M[ LINE_CALLBACK | ALPHABETS ]M-]
 
+var AR_STOP_WORDS : Map<String, String> = [
+    "ئەس?ەت" => "ئ",
+    "تەل?ەت" => "ئ",
+    "جەم?ىيەت" => "ئ",
+];
+
 enum LANG_KEYS {
     arabic;
     cyrillic;
@@ -577,7 +583,15 @@ class Converter {
 		this.result = new StringBuf();
 		this.lastAlpha = null;
         this.process();
-        return result.toString();
+        var r = result.toString();
+        if (this.to == LANG_KEYS.arabic) {
+            for(k in AR_STOP_WORDS.keys()) {
+                var matchStr = StringTools.replace(k, "?", "");
+                var targetStr = StringTools.replace(k, "?", AR_STOP_WORDS[k]);
+                r = StringTools.replace(r, matchStr, targetStr);
+            }
+        }
+        return r;
     }
 
     static function main() {
@@ -585,7 +599,10 @@ class Converter {
         trace(LANGUAGES.UYGHURS);
 		// var origin = "شاڭخەي";
 		// var origin = "قول باش پۇت كۆز";
-		var origin = "مائارىپ مۇئەللىم دائىرە مۇئەييەن تەبىئىي پائالىيەت ئۆزبېكىستانغا ھىنگان چەكلەنگەن گاڭگىراپ باشلانغۇچ جەمئىيەت";
+		// var origin = "مائارىپ مۇئەللىم دائىرە مۇئەييەن تەبىئىي پائالىيەت ئۆزبېكىستانغا ھىنگان چەكلەنگەن گاڭگىراپ باشلانغۇچ جەمئىيەت";
+		// var origin = "ئەسئەت";
+		// var origin = "گاڭگىراپ";
+		var origin = "جەمئىيەت";
         trace("origin", origin);
         var converter = new Converter(LANG_KEYS.arabic, LANG_KEYS.latin);
         var result = converter.convert(origin);
