@@ -5,6 +5,7 @@ import openfl.display.Sprite;
 import openfl.Assets;
 
 import openfl.text.*;
+import openfl.events.*;
 
 class Main extends Sprite
 {
@@ -48,5 +49,14 @@ class Main extends Sprite
 		text.embedFonts = true;
 		text.setTextFormat(format);
 		//
+		this.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+		this.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 	}
+
+	private function onKeyDown(evt:KeyboardEvent):Void {
+	}
+
+	private function onKeyUp(evt:KeyboardEvent):Void {
+	}
+
 }
