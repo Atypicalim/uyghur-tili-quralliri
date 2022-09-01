@@ -54,6 +54,8 @@ class Main extends Sprite
 	}
 
 	private function onKeyDown(evt:KeyboardEvent):Void {
+		trace("Char code: " + evt.charCode);
+		trace("Key code: " + evt.keyCode);
 	}
 
 	private function onKeyUp(evt:KeyboardEvent):Void {
