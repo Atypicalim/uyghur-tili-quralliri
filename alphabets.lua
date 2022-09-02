@@ -2,7 +2,7 @@
     alphabets
 ]]
 
-local infos = {}
+local ALPHABETS_MAP = {}
 
 local TYPES = {
     MARKS = "MARKS",
@@ -12,10 +12,6 @@ local TYPES = {
     COMPOUNDS = "COMPOUNDS",
 }
 
-local LANGUAGES = {
-    UYGHURS = "UYGHURS",
-}
-
 local function alphabet(tp, ...)
     local arr = {...}
     for _,v in ipairs(arr) do
@@ -23,9 +19,9 @@ local function alphabet(tp, ...)
             ["tp"] = tp,
             ["nm"] = v[1],
             ["ipa"] = v[2],
-            [LANGUAGES.UYGHURS] = {v[3], v[4], v[5], v[6], v[7]}, -- {cts, uas, ucs, uns, uls}
+            ["alpha"] = {v[3], v[4], v[5], v[6], v[7]}, -- {cts, uas, ucs, uns, uls}
         }
-        table.insert(infos, conf)
+        table.insert(ALPHABETS_MAP, conf)
     end
 end
 
@@ -359,7 +355,7 @@ local ALPHABET_KEYS = {
     nm = {"NAMES", "english name"},
     tp = {"TYPES", "alphabet type"},
     ipa = {"String", "reading sound"},
-    [LANGUAGES.UYGHURS] = {"Array<String>", "language script"},
+    alpha = {"Array<String>", "language script"},
 }
 local space = " "
 
@@ -376,20 +372,6 @@ end
 local contentTypes = string.format(TEMPLATE_TYPES, types)
 alphabetContent = alphabetContent .. "" .. contentTypes
 
--- 
-
-local TEMPLATE_LANGUAGES = [[
-// languages
-enum LANGUAGES {%s
-}
-]]
-local languages = ""
-for k,v in pairs(LANGUAGES) do
-    languages = languages .. "\n" .. space:rep(4) .. v .. ";";
-end
-local contentLanguages = string.format(TEMPLATE_LANGUAGES, languages)
-alphabetContent = alphabetContent .. "\n" .. contentLanguages
-
 --
 
 local TEMPLATE_NAME = [[
@@ -398,7 +380,7 @@ enum NAMES {%s
 }
 ]]
 local names = ""
-for k,v in pairs(infos) do
+for k,v in pairs(ALPHABETS_MAP) do
     names = names .. "\n" .. space:rep(4) .. v.nm .. ";";
 end
 local contentNames = string.format(TEMPLATE_NAME, names)
@@ -406,24 +388,12 @@ alphabetContent = alphabetContent .. "\n" .. contentNames
 
 --
 
-local TEMPLATE_ALPHABET = [[
-// alphabets
-typedef Alphabet = {%s
-}
-]]
-local alphabet = ""
-for k,v in pairs(ALPHABET_KEYS) do
-    alphabet = alphabet .. string.format("\n%svar %s : %s; // %s", space:rep(4), k, v[1], v[2])
-end
-local contentAlphabet = string.format(TEMPLATE_ALPHABET, alphabet)
-alphabetContent = alphabetContent .. "\n" .. contentAlphabet
-
---
-
 local TEMPLATE_CONFIGS = [[
 // ALPHABETS
-var ALPHABETS : Map<NAMES, Alphabet> = [%s
+class Alphabets {
+public static var ALPHABETS = [%s
 ];
+}
 ]]
 local TEMPLATE_CONFIG = [[
     // %s
@@ -432,7 +402,7 @@ local TEMPLATE_CONFIG = [[
 ]]
 local TEMPLATE_PAIRS = [[%s : %s,]]
 local alphabets = ""
-for index,info in pairs(infos) do
+for index,info in pairs(ALPHABETS_MAP) do
     local entry = ""
     for key,_ in pairs(ALPHABET_KEYS) do
         local value = info[key]
@@ -461,4 +431,31 @@ alphabetContent = alphabetContent .. "\n" .. contenConfigs
 function getAlphabets()
     return alphabetContent
 end
+
+-- 
+
+local builder = CodeBuilder(false)
+local source = "./src/Alphabets.hx"
+
+local isSkip = false
+
+builder:setInput(source)
+builder:setComment("//")
+builder:handleMacro(true)
+builder:onMacro(function(code, command)
+    if command == "ALPHABETS_START" then
+        isSkip = true
+        return "// [M[ ALPHABETS_START ]M]"
+    elseif command == "ALPHABETS_END" then
+        isSkip = false
+        return getAlphabets() .. "// [M[ ALPHABETS_END ]M]"
+    end
+end)
+builder:onLine(function(line)
+    if not isSkip then
+        return line
+    end
+end)
+builder:setOutput(source)
+builder:start()
 
