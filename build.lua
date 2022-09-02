@@ -13,7 +13,7 @@ local isSkip = false
 
 builder:setInput(source)
 builder:setComment("//")
-builder:handleMacro(false)
+builder:handleMacro(true)
 builder:onMacro(function(code, command)
     if command == "ALPHABETS_START" then
         isSkip = true

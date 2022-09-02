@@ -1,7 +1,8 @@
+import haxe.EnumTools;
 
 // converter
 
-
+// [M[ ALPHABETS_START ]M]
 // types
 enum TYPES {
     VOWELS;
@@ -59,340 +60,297 @@ enum NAMES {
 typedef Alphabet = {
     var UYGHURS : Array<String>; // language script
     var tp : TYPES; // alphabet type
-    var ipa : String; // reading sound
     var nm : NAMES; // english name
-    var cmn : String; // common script
+    var ipa : String; // reading sound
 }
 
 // ALPHABETS
 var ALPHABETS : Map<NAMES, Alphabet> = [
     // HEMZE
     NAMES.HEMZE => {
-        UYGHURS : ["ئ", "", "", ""],
+        UYGHURS : ["'", "ئ", "'", "'", "'"],
         tp : TYPES.MARKS,
-        ipa : "",
         nm : NAMES.HEMZE,
-        cmn : "",
+        ipa : "'",
     },
 
     // A
     NAMES.A => {
-        UYGHURS : ["ا", "a", "a", "a"],
+        UYGHURS : ["a", "ا", "a", "a", "a"],
         tp : TYPES.VOWELS,
-        ipa : "ɑ",
         nm : NAMES.A,
-        cmn : "a",
+        ipa : "ɑ",
     },
 
     // AE
     NAMES.AE => {
-        UYGHURS : ["ە", "ә", "ə", "e"],
+        UYGHURS : ["ä", "ە", "ә", "ə", "e"],
         tp : TYPES.VOWELS,
-        ipa : "æ",
         nm : NAMES.AE,
-        cmn : "ä",
+        ipa : "æ",
     },
 
     // E
     NAMES.E => {
-        UYGHURS : ["ې", "е", "e", "ë"],
+        UYGHURS : ["e", "ې", "е", "e", "ë"],
         tp : TYPES.VOWELS,
-        ipa : "",
         nm : NAMES.E,
-        cmn : "e",
+        ipa : "",
     },
 
     // I
     NAMES.I => {
-        UYGHURS : ["ى", "и", "i", "i"],
+        UYGHURS : ["i", "ى", "и", "i", "i"],
         tp : TYPES.VOWELS,
-        ipa : "",
         nm : NAMES.I,
-        cmn : "i",
+        ipa : "",
     },
 
     // O
     NAMES.O => {
-        UYGHURS : ["و", "о", "o", "o"],
+        UYGHURS : ["o", "و", "о", "o", "o"],
         tp : TYPES.VOWELS,
-        ipa : "",
         nm : NAMES.O,
-        cmn : "o",
+        ipa : "",
     },
 
     // OO
     NAMES.OO => {
-        UYGHURS : ["ۆ", "ө", "ɵ", "ö"],
+        UYGHURS : ["ö", "ۆ", "ө", "ɵ", "ö"],
         tp : TYPES.VOWELS,
-        ipa : "",
         nm : NAMES.OO,
-        cmn : "ö",
+        ipa : "",
     },
 
     // U
     NAMES.U => {
-        UYGHURS : ["ۇ", "у", "u", "u"],
+        UYGHURS : ["u", "ۇ", "у", "u", "u"],
         tp : TYPES.VOWELS,
-        ipa : "",
         nm : NAMES.U,
-        cmn : "u",
+        ipa : "",
     },
 
     // UU
     NAMES.UU => {
-        UYGHURS : ["ۈ", "ү", "ü", "ü"],
+        UYGHURS : ["ü", "ۈ", "ү", "ü", "ü"],
         tp : TYPES.VOWELS,
-        ipa : "",
         nm : NAMES.UU,
-        cmn : "ü",
+        ipa : "",
     },
 
     // B
     NAMES.B => {
-        UYGHURS : ["ب", "б", "b", "b"],
+        UYGHURS : ["b", "ب", "б", "b", "b"],
         tp : TYPES.CONSONANTS,
-        ipa : "b",
         nm : NAMES.B,
-        cmn : "b",
+        ipa : "b",
     },
 
     // DJ
     NAMES.DJ => {
-        UYGHURS : ["ج", "җ", "j", "j"],
+        UYGHURS : ["c", "ج", "җ", "j", "j"],
         tp : TYPES.CONSONANTS,
-        ipa : "dʒ",
         nm : NAMES.DJ,
-        cmn : "c",
+        ipa : "dʒ",
     },
 
     // CH
     NAMES.CH => {
-        UYGHURS : ["چ", "ч", "q", "ch"],
+        UYGHURS : ["ç", "چ", "ч", "q", "ch"],
         tp : TYPES.CONSONANTS,
-        ipa : "tʃ",
         nm : NAMES.CH,
-        cmn : "ç",
+        ipa : "tʃ",
     },
 
     // D
     NAMES.D => {
-        UYGHURS : ["د", "д", "d", "d"],
+        UYGHURS : ["d", "د", "д", "d", "d"],
         tp : TYPES.CONSONANTS,
-        ipa : "d",
         nm : NAMES.D,
-        cmn : "d",
+        ipa : "d",
     },
 
     // F
     NAMES.F => {
-        UYGHURS : ["ف", "ф", "f", "f"],
+        UYGHURS : ["f", "ف", "ф", "f", "f"],
         tp : TYPES.CONSONANTS,
-        ipa : "f",
         nm : NAMES.F,
-        cmn : "f",
+        ipa : "f",
     },
 
     // G
     NAMES.G => {
-        UYGHURS : ["گ", "г", "g", "g"],
+        UYGHURS : ["g", "گ", "г", "g", "g"],
         tp : TYPES.CONSONANTS,
-        ipa : "g",
         nm : NAMES.G,
-        cmn : "g",
+        ipa : "g",
     },
 
     // GH
     NAMES.GH => {
-        UYGHURS : ["غ", "ғ", "ƣ", "gh"],
+        UYGHURS : ["ğ", "غ", "ғ", "ƣ", "gh"],
         tp : TYPES.CONSONANTS,
-        ipa : "ɣ",
         nm : NAMES.GH,
-        cmn : "ğ",
+        ipa : "ɣ",
     },
 
     // H
     NAMES.H => {
-        UYGHURS : ["ھ", "һ", "ⱨ", "h"],
+        UYGHURS : ["h", "ھ", "һ", "ⱨ", "h"],
         tp : TYPES.CONSONANTS,
-        ipa : "h",
         nm : NAMES.H,
-        cmn : "h",
+        ipa : "h",
     },
 
     // J
     NAMES.J => {
-        UYGHURS : ["ژ", "ж", "ⱬ", "zh"],
+        UYGHURS : ["j", "ژ", "ж", "ⱬ", "zh"],
         tp : TYPES.CONSONANTS,
-        ipa : "ʒ",
         nm : NAMES.J,
-        cmn : "j",
+        ipa : "ʒ",
     },
 
     // K
     NAMES.K => {
-        UYGHURS : ["ك", "к", "k", "k"],
+        UYGHURS : ["k", "ك", "к", "k", "k"],
         tp : TYPES.CONSONANTS,
-        ipa : "k",
         nm : NAMES.K,
-        cmn : "k",
+        ipa : "k",
     },
 
     // L
     NAMES.L => {
-        UYGHURS : ["ل", "л", "l", "l"],
+        UYGHURS : ["l", "ل", "л", "l", "l"],
         tp : TYPES.CONSONANTS,
-        ipa : "l",
         nm : NAMES.L,
-        cmn : "l",
+        ipa : "l",
     },
 
     // M
     NAMES.M => {
-        UYGHURS : ["م", "м", "m", "m"],
+        UYGHURS : ["m", "م", "м", "m", "m"],
         tp : TYPES.CONSONANTS,
-        ipa : "m",
         nm : NAMES.M,
-        cmn : "m",
+        ipa : "m",
     },
 
     // N
     NAMES.N => {
-        UYGHURS : ["ن", "н", "n", "n"],
+        UYGHURS : ["n", "ن", "н", "n", "n"],
         tp : TYPES.CONSONANTS,
-        ipa : "n",
         nm : NAMES.N,
-        cmn : "n",
+        ipa : "n",
     },
 
     // NG
     NAMES.NG => {
-        UYGHURS : ["ڭ", "ң", "ng", "ng"],
+        UYGHURS : ["ñ", "ڭ", "ң", "ng", "ng"],
         tp : TYPES.CONSONANTS,
-        ipa : "ŋ",
         nm : NAMES.NG,
-        cmn : "ñ",
+        ipa : "ŋ",
     },
 
     // P
     NAMES.P => {
-        UYGHURS : ["پ", "п", "p", "p"],
+        UYGHURS : ["p", "پ", "п", "p", "p"],
         tp : TYPES.CONSONANTS,
-        ipa : "p",
         nm : NAMES.P,
-        cmn : "p",
+        ipa : "p",
     },
 
     // Q
     NAMES.Q => {
-        UYGHURS : ["ق", "қ", "ⱪ", "q"],
+        UYGHURS : ["q", "ق", "қ", "ⱪ", "q"],
         tp : TYPES.CONSONANTS,
-        ipa : "q",
         nm : NAMES.Q,
-        cmn : "q",
+        ipa : "q",
     },
 
     // R
     NAMES.R => {
-        UYGHURS : ["ر", "р", "r", "r"],
+        UYGHURS : ["r", "ر", "р", "r", "r"],
         tp : TYPES.CONSONANTS,
-        ipa : "r",
         nm : NAMES.R,
-        cmn : "r",
+        ipa : "r",
     },
 
     // S
     NAMES.S => {
-        UYGHURS : ["س", "с", "s", "s"],
+        UYGHURS : ["s", "س", "с", "s", "s"],
         tp : TYPES.CONSONANTS,
-        ipa : "s",
         nm : NAMES.S,
-        cmn : "s",
+        ipa : "s",
     },
 
     // SH
     NAMES.SH => {
-        UYGHURS : ["ش", "ш", "x", "sh"],
+        UYGHURS : ["ş", "ش", "ш", "x", "sh"],
         tp : TYPES.CONSONANTS,
-        ipa : "ʃ",
         nm : NAMES.SH,
-        cmn : "ş",
+        ipa : "ʃ",
     },
 
     // T
     NAMES.T => {
-        UYGHURS : ["ت", "т", "t", "t"],
+        UYGHURS : ["t", "ت", "т", "t", "t"],
         tp : TYPES.CONSONANTS,
-        ipa : "t",
         nm : NAMES.T,
-        cmn : "t",
+        ipa : "t",
     },
 
     // X
     NAMES.X => {
-        UYGHURS : ["خ", "х", "h", "x"],
+        UYGHURS : ["x", "خ", "х", "h", "x"],
         tp : TYPES.CONSONANTS,
-        ipa : "x",
         nm : NAMES.X,
-        cmn : "x",
+        ipa : "x",
     },
 
     // Z
     NAMES.Z => {
-        UYGHURS : ["ز", "з", "z", "z"],
+        UYGHURS : ["z", "ز", "з", "z", "z"],
         tp : TYPES.CONSONANTS,
-        ipa : "z",
         nm : NAMES.Z,
-        cmn : "z",
+        ipa : "z",
     },
 
     // Y
     NAMES.Y => {
-        UYGHURS : ["ي", "й", "y", "y"],
+        UYGHURS : ["y", "ي", "й", "y", "y"],
         tp : TYPES.SEMIVOWELS,
-        ipa : "j",
         nm : NAMES.Y,
-        cmn : "y",
+        ipa : "j",
     },
 
     // V
     NAMES.V => {
-        UYGHURS : ["ۋ", "в", "v", "w"],
+        UYGHURS : ["v", "ۋ", "в", "v", "w"],
         tp : TYPES.SEMIVOWELS,
-        ipa : "v",
         nm : NAMES.V,
-        cmn : "v",
+        ipa : "v",
     },
 
     // YU
     NAMES.YU => {
-        UYGHURS : ["ي‍‍ۇ", "ю", "yu", "yu"],
+        UYGHURS : ["yu", "ي‍‍ۇ", "ю", "yu", "yu"],
         tp : TYPES.COMPOUNDS,
-        ipa : "ju",
         nm : NAMES.YU,
-        cmn : "yu",
+        ipa : "ju",
     },
 
     // YA
     NAMES.YA => {
-        UYGHURS : ["ي‍‍ا", "я", "ya", "ya"],
+        UYGHURS : ["ya", "ي‍‍ا", "я", "ya", "ya"],
         tp : TYPES.COMPOUNDS,
-        ipa : "jɑ",
         nm : NAMES.YA,
-        cmn : "ya",
+        ipa : "jɑ",
     },
 
 ];
-
-
-// [-M[ LINE_CALLBACK | ALPHABETS ]M-]
-
-var AR_STOP_WORDS : Map<String, String> = [
-    "ئەس?ەت" => "ئ",
-    "تەل?ەت" => "ئ",
-    "جەم?ىيەت" => "ئ",
-];
+// [M[ ALPHABETS_END ]M]
 
 enum LANG_KEYS {
+    common;
     arabic;
     cyrillic;
     newly;
@@ -401,10 +359,11 @@ enum LANG_KEYS {
 
 var INDEX_MAP : Map<LANGUAGES, Map<LANG_KEYS, Int>> = [
     LANGUAGES.UYGHURS => [
-        LANG_KEYS.arabic => 0,
-        LANG_KEYS.cyrillic => 1,
-        LANG_KEYS.newly => 2,
-        LANG_KEYS.latin => 3,
+        LANG_KEYS.common => 0,
+        LANG_KEYS.arabic => 1,
+        LANG_KEYS.cyrillic => 2,
+        LANG_KEYS.newly => 3,
+        LANG_KEYS.latin => 4,
     ],
 ];
 
@@ -451,7 +410,7 @@ class Converter {
 		var arr = getLangArr(conf);
 		var idx = INDEX_MAP[this.lang][this.to];
 		var str = arr[idx];
-		if (conf.tp == TYPES.VOWELS && (lastAlpha == null || lastAlpha.tp == TYPES.MARKS || lastAlpha.tp == TYPES.VOWELS)) {
+		if (this.to == LANG_KEYS.arabic && conf.tp == TYPES.VOWELS && (lastAlpha == null || lastAlpha.tp == TYPES.VOWELS)) {
 			this.result.add(this.getLangArr(ALPHABETS[NAMES.HEMZE])[this.toIdx]);
 		}
 		lastAlpha = conf;
@@ -547,7 +506,9 @@ class Converter {
 				}
 			}
 		} else if (this.from == LANG_KEYS.arabic) {
-			//
+			if (this.chCurr == "ئ") {
+                if (this.chLast == null || StringTools.isSpace(this.chLast, 0)) return;
+            }
 		}
 		//
 		var alpha = this.getAlphabet(this.chCurr);
@@ -583,15 +544,15 @@ class Converter {
 		this.result = new StringBuf();
 		this.lastAlpha = null;
         this.process();
-        var r = result.toString();
-        if (this.to == LANG_KEYS.arabic) {
-            for(k in AR_STOP_WORDS.keys()) {
-                var matchStr = StringTools.replace(k, "?", "");
-                var targetStr = StringTools.replace(k, "?", AR_STOP_WORDS[k]);
-                r = StringTools.replace(r, matchStr, targetStr);
-            }
-        }
-        return r;
+        return result.toString();
+    }
+
+    public static function work(from : String, to : String, text : String) {
+        var fromLang : LANG_KEYS = EnumTools.createByName(LANG_KEYS, from);
+        var toLang : LANG_KEYS = EnumTools.createByName(LANG_KEYS, to);
+        var converter = new Converter(fromLang, toLang);
+        var result = converter.convert(text);
+        return result;
     }
 
     static function main() {
@@ -602,12 +563,13 @@ class Converter {
 		// var origin = "مائارىپ مۇئەللىم دائىرە مۇئەييەن تەبىئىي پائالىيەت ئۆزبېكىستانغا ھىنگان چەكلەنگەن گاڭگىراپ باشلانغۇچ جەمئىيەت";
 		// var origin = "ئەسئەت";
 		// var origin = "گاڭگىراپ";
-		var origin = "جەمئىيەت";
+		// var origin = "جەمئىيەت";
+		var origin = "ئالىمجان يۈسەن ۋە ئەسئەتجان سۇ تۇتتى.";
         trace("origin", origin);
-        var converter = new Converter(LANG_KEYS.arabic, LANG_KEYS.latin);
+        var converter = new Converter(LANG_KEYS.arabic, LANG_KEYS.common);
         var result = converter.convert(origin);
         trace("result", result);
-        converter = new Converter(LANG_KEYS.latin, LANG_KEYS.arabic);
+        converter = new Converter(LANG_KEYS.common, LANG_KEYS.arabic);
         var reverse = converter.convert(result);
         trace("reverse", reverse);
         #if sys

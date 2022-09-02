@@ -4,6 +4,7 @@
 package.path = package.path .. ";./my-build-tools/?.lua"
 require "./pure-lua-tools/test"
 
-require('keyboard')
+-- os.execute("haxe ./keyboard.hxml")
+require('build')
 
 
