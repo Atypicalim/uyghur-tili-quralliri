@@ -1,337 +1,394 @@
 // Alphabets
 
-// [M[ ALPHABETS_START ]M]
+enum LANG_KEYS {
+    common;
+    arabic;
+    cyrillic;
+    newly;
+    latin;
+}
+
 // types
 enum TYPES {
-    VOWELS;
-    CONSONANTS;
+// [M[ TYPES_START ]M]
     MARKS;
     COMPOUNDS;
-    SEMIVOWELS;
+    VOWELS;
+    CONSONANTS;
+// [M[ TYPES_END ]M]
 }
 
 // names
 enum NAMES {
+// [M[ NAMES_START ]M]
     HEMZE;
+    COMMA;
+    EXCLA;
+    QUESS;
+    COLON;
     A;
     AE;
-    E;
-    I;
     O;
-    OO;
     U;
+    OO;
     UU;
+    I;
+    E;
     B;
+    P;
+    T;
     DJ;
     CH;
+    X;
     D;
-    F;
-    G;
-    GH;
-    H;
+    R;
+    Z;
     J;
+    S;
+    SH;
+    GH;
+    F;
+    Q;
     K;
+    G;
+    NG;
     L;
     M;
     N;
-    NG;
-    P;
-    Q;
-    R;
-    S;
-    SH;
-    T;
-    X;
-    Z;
-    Y;
+    H;
     V;
+    Y;
     YU;
     YA;
+// [M[ NAMES_END ]M]
 }
 
 // ALPHABETS
 class Alphabets {
+
 public static var ALPHABETS = [
+// [M[ ALPHABETS_START ]M]
     // HEMZE
     NAMES.HEMZE => {
-        alpha : ["'", "ئ", "'", "'", "'"],
+        idx : 0,
         tp : TYPES.MARKS,
-        nm : NAMES.HEMZE,
         ipa : "'",
+        nm : NAMES.HEMZE,
+        alpha : ["'", "ئ", "'", "'", "'"],
     },
-
+    // COMMA
+    NAMES.COMMA => {
+        idx : 0,
+        tp : TYPES.MARKS,
+        ipa : ",",
+        nm : NAMES.COMMA,
+        alpha : [",", "،", ",", ",", ","],
+    },
+    // EXCLA
+    NAMES.EXCLA => {
+        idx : 0,
+        tp : TYPES.MARKS,
+        ipa : "!",
+        nm : NAMES.EXCLA,
+        alpha : ["!", "!", "!", "!", "!"],
+    },
+    // QUESS
+    NAMES.QUESS => {
+        idx : 0,
+        tp : TYPES.MARKS,
+        ipa : "?",
+        nm : NAMES.QUESS,
+        alpha : ["?", "؟", "?", "?", "?"],
+    },
+    // COLON
+    NAMES.COLON => {
+        idx : 0,
+        tp : TYPES.MARKS,
+        ipa : ";",
+        nm : NAMES.COLON,
+        alpha : [";", "؛", ";", ";", ";"],
+    },
     // A
     NAMES.A => {
-        alpha : ["a", "ا", "a", "a", "a"],
+        idx : 1,
         tp : TYPES.VOWELS,
-        nm : NAMES.A,
         ipa : "ɑ",
+        nm : NAMES.A,
+        alpha : ["a", "ا", "a", "a", "a"],
     },
-
     // AE
     NAMES.AE => {
-        alpha : ["ä", "ە", "ә", "ə", "e"],
+        idx : 2,
         tp : TYPES.VOWELS,
-        nm : NAMES.AE,
         ipa : "æ",
+        nm : NAMES.AE,
+        alpha : ["ä", "ە", "ә", "ə", "e"],
     },
-
-    // E
-    NAMES.E => {
-        alpha : ["e", "ې", "е", "e", "ë"],
-        tp : TYPES.VOWELS,
-        nm : NAMES.E,
-        ipa : "",
-    },
-
-    // I
-    NAMES.I => {
-        alpha : ["i", "ى", "и", "i", "i"],
-        tp : TYPES.VOWELS,
-        nm : NAMES.I,
-        ipa : "",
-    },
-
     // O
     NAMES.O => {
-        alpha : ["o", "و", "о", "o", "o"],
+        idx : 25,
         tp : TYPES.VOWELS,
+        ipa : "",
         nm : NAMES.O,
-        ipa : "",
+        alpha : ["o", "و", "о", "o", "o"],
     },
-
-    // OO
-    NAMES.OO => {
-        alpha : ["ö", "ۆ", "ө", "ɵ", "ö"],
-        tp : TYPES.VOWELS,
-        nm : NAMES.OO,
-        ipa : "",
-    },
-
     // U
     NAMES.U => {
-        alpha : ["u", "ۇ", "у", "u", "u"],
+        idx : 26,
         tp : TYPES.VOWELS,
-        nm : NAMES.U,
         ipa : "",
+        nm : NAMES.U,
+        alpha : ["u", "ۇ", "у", "u", "u"],
     },
-
+    // OO
+    NAMES.OO => {
+        idx : 27,
+        tp : TYPES.VOWELS,
+        ipa : "",
+        nm : NAMES.OO,
+        alpha : ["ö", "ۆ", "ө", "ɵ", "ö"],
+    },
     // UU
     NAMES.UU => {
-        alpha : ["ü", "ۈ", "ү", "ü", "ü"],
+        idx : 28,
         tp : TYPES.VOWELS,
-        nm : NAMES.UU,
         ipa : "",
+        nm : NAMES.UU,
+        alpha : ["ü", "ۈ", "ү", "ü", "ü"],
     },
-
+    // I
+    NAMES.I => {
+        idx : 31,
+        tp : TYPES.VOWELS,
+        ipa : "",
+        nm : NAMES.I,
+        alpha : ["i", "ى", "и", "i", "i"],
+    },
+    // E
+    NAMES.E => {
+        idx : 30,
+        tp : TYPES.VOWELS,
+        ipa : "",
+        nm : NAMES.E,
+        alpha : ["e", "ې", "е", "e", "ë"],
+    },
     // B
     NAMES.B => {
-        alpha : ["b", "ب", "б", "b", "b"],
+        idx : 3,
         tp : TYPES.CONSONANTS,
-        nm : NAMES.B,
         ipa : "b",
+        nm : NAMES.B,
+        alpha : ["b", "ب", "б", "b", "b"],
     },
-
-    // DJ
-    NAMES.DJ => {
-        alpha : ["c", "ج", "җ", "j", "j"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.DJ,
-        ipa : "dʒ",
-    },
-
-    // CH
-    NAMES.CH => {
-        alpha : ["ç", "چ", "ч", "q", "ch"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.CH,
-        ipa : "tʃ",
-    },
-
-    // D
-    NAMES.D => {
-        alpha : ["d", "د", "д", "d", "d"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.D,
-        ipa : "d",
-    },
-
-    // F
-    NAMES.F => {
-        alpha : ["f", "ف", "ф", "f", "f"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.F,
-        ipa : "f",
-    },
-
-    // G
-    NAMES.G => {
-        alpha : ["g", "گ", "г", "g", "g"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.G,
-        ipa : "g",
-    },
-
-    // GH
-    NAMES.GH => {
-        alpha : ["ğ", "غ", "ғ", "ƣ", "gh"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.GH,
-        ipa : "ɣ",
-    },
-
-    // H
-    NAMES.H => {
-        alpha : ["h", "ھ", "һ", "ⱨ", "h"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.H,
-        ipa : "h",
-    },
-
-    // J
-    NAMES.J => {
-        alpha : ["j", "ژ", "ж", "ⱬ", "zh"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.J,
-        ipa : "ʒ",
-    },
-
-    // K
-    NAMES.K => {
-        alpha : ["k", "ك", "к", "k", "k"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.K,
-        ipa : "k",
-    },
-
-    // L
-    NAMES.L => {
-        alpha : ["l", "ل", "л", "l", "l"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.L,
-        ipa : "l",
-    },
-
-    // M
-    NAMES.M => {
-        alpha : ["m", "م", "м", "m", "m"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.M,
-        ipa : "m",
-    },
-
-    // N
-    NAMES.N => {
-        alpha : ["n", "ن", "н", "n", "n"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.N,
-        ipa : "n",
-    },
-
-    // NG
-    NAMES.NG => {
-        alpha : ["ñ", "ڭ", "ң", "ng", "ng"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.NG,
-        ipa : "ŋ",
-    },
-
     // P
     NAMES.P => {
-        alpha : ["p", "پ", "п", "p", "p"],
+        idx : 4,
         tp : TYPES.CONSONANTS,
-        nm : NAMES.P,
         ipa : "p",
+        nm : NAMES.P,
+        alpha : ["p", "پ", "п", "p", "p"],
     },
-
-    // Q
-    NAMES.Q => {
-        alpha : ["q", "ق", "қ", "ⱪ", "q"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.Q,
-        ipa : "q",
-    },
-
-    // R
-    NAMES.R => {
-        alpha : ["r", "ر", "р", "r", "r"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.R,
-        ipa : "r",
-    },
-
-    // S
-    NAMES.S => {
-        alpha : ["s", "س", "с", "s", "s"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.S,
-        ipa : "s",
-    },
-
-    // SH
-    NAMES.SH => {
-        alpha : ["ş", "ش", "ш", "x", "sh"],
-        tp : TYPES.CONSONANTS,
-        nm : NAMES.SH,
-        ipa : "ʃ",
-    },
-
     // T
     NAMES.T => {
-        alpha : ["t", "ت", "т", "t", "t"],
+        idx : 5,
         tp : TYPES.CONSONANTS,
-        nm : NAMES.T,
         ipa : "t",
+        nm : NAMES.T,
+        alpha : ["t", "ت", "т", "t", "t"],
     },
-
+    // DJ
+    NAMES.DJ => {
+        idx : 6,
+        tp : TYPES.CONSONANTS,
+        ipa : "dʒ",
+        nm : NAMES.DJ,
+        alpha : ["c", "ج", "җ", "j", "j"],
+    },
+    // CH
+    NAMES.CH => {
+        idx : 7,
+        tp : TYPES.CONSONANTS,
+        ipa : "tʃ",
+        nm : NAMES.CH,
+        alpha : ["ç", "چ", "ч", "q", "ch"],
+    },
     // X
     NAMES.X => {
-        alpha : ["x", "خ", "х", "h", "x"],
+        idx : 8,
         tp : TYPES.CONSONANTS,
-        nm : NAMES.X,
         ipa : "x",
+        nm : NAMES.X,
+        alpha : ["x", "خ", "х", "h", "x"],
     },
-
+    // D
+    NAMES.D => {
+        idx : 9,
+        tp : TYPES.CONSONANTS,
+        ipa : "d",
+        nm : NAMES.D,
+        alpha : ["d", "د", "д", "d", "d"],
+    },
+    // R
+    NAMES.R => {
+        idx : 10,
+        tp : TYPES.CONSONANTS,
+        ipa : "r",
+        nm : NAMES.R,
+        alpha : ["r", "ر", "р", "r", "r"],
+    },
     // Z
     NAMES.Z => {
-        alpha : ["z", "ز", "з", "z", "z"],
+        idx : 11,
         tp : TYPES.CONSONANTS,
-        nm : NAMES.Z,
         ipa : "z",
+        nm : NAMES.Z,
+        alpha : ["z", "ز", "з", "z", "z"],
     },
-
-    // Y
-    NAMES.Y => {
-        alpha : ["y", "ي", "й", "y", "y"],
-        tp : TYPES.SEMIVOWELS,
-        nm : NAMES.Y,
-        ipa : "j",
+    // J
+    NAMES.J => {
+        idx : 12,
+        tp : TYPES.CONSONANTS,
+        ipa : "ʒ",
+        nm : NAMES.J,
+        alpha : ["j", "ژ", "ж", "ⱬ", "zh"],
     },
-
+    // S
+    NAMES.S => {
+        idx : 13,
+        tp : TYPES.CONSONANTS,
+        ipa : "s",
+        nm : NAMES.S,
+        alpha : ["s", "س", "с", "s", "s"],
+    },
+    // SH
+    NAMES.SH => {
+        idx : 14,
+        tp : TYPES.CONSONANTS,
+        ipa : "ʃ",
+        nm : NAMES.SH,
+        alpha : ["ş", "ش", "ш", "x", "sh"],
+    },
+    // GH
+    NAMES.GH => {
+        idx : 15,
+        tp : TYPES.CONSONANTS,
+        ipa : "ɣ",
+        nm : NAMES.GH,
+        alpha : ["ğ", "غ", "ғ", "ƣ", "gh"],
+    },
+    // F
+    NAMES.F => {
+        idx : 16,
+        tp : TYPES.CONSONANTS,
+        ipa : "f",
+        nm : NAMES.F,
+        alpha : ["f", "ف", "ф", "f", "f"],
+    },
+    // Q
+    NAMES.Q => {
+        idx : 17,
+        tp : TYPES.CONSONANTS,
+        ipa : "q",
+        nm : NAMES.Q,
+        alpha : ["q", "ق", "қ", "ⱪ", "q"],
+    },
+    // K
+    NAMES.K => {
+        idx : 18,
+        tp : TYPES.CONSONANTS,
+        ipa : "k",
+        nm : NAMES.K,
+        alpha : ["k", "ك", "к", "k", "k"],
+    },
+    // G
+    NAMES.G => {
+        idx : 19,
+        tp : TYPES.CONSONANTS,
+        ipa : "g",
+        nm : NAMES.G,
+        alpha : ["g", "گ", "г", "g", "g"],
+    },
+    // NG
+    NAMES.NG => {
+        idx : 20,
+        tp : TYPES.CONSONANTS,
+        ipa : "ŋ",
+        nm : NAMES.NG,
+        alpha : ["ñ", "ڭ", "ң", "ng", "ng"],
+    },
+    // L
+    NAMES.L => {
+        idx : 21,
+        tp : TYPES.CONSONANTS,
+        ipa : "l",
+        nm : NAMES.L,
+        alpha : ["l", "ل", "л", "l", "l"],
+    },
+    // M
+    NAMES.M => {
+        idx : 22,
+        tp : TYPES.CONSONANTS,
+        ipa : "m",
+        nm : NAMES.M,
+        alpha : ["m", "م", "м", "m", "m"],
+    },
+    // N
+    NAMES.N => {
+        idx : 23,
+        tp : TYPES.CONSONANTS,
+        ipa : "n",
+        nm : NAMES.N,
+        alpha : ["n", "ن", "н", "n", "n"],
+    },
+    // H
+    NAMES.H => {
+        idx : 24,
+        tp : TYPES.CONSONANTS,
+        ipa : "h",
+        nm : NAMES.H,
+        alpha : ["h", "ھ", "һ", "ⱨ", "h"],
+    },
     // V
     NAMES.V => {
-        alpha : ["v", "ۋ", "в", "v", "w"],
-        tp : TYPES.SEMIVOWELS,
-        nm : NAMES.V,
+        idx : 29,
+        tp : TYPES.CONSONANTS,
         ipa : "v",
+        nm : NAMES.V,
+        alpha : ["v", "ۋ", "в", "v", "w"],
     },
-
+    // Y
+    NAMES.Y => {
+        idx : 32,
+        tp : TYPES.CONSONANTS,
+        ipa : "j",
+        nm : NAMES.Y,
+        alpha : ["y", "ي", "й", "y", "y"],
+    },
     // YU
     NAMES.YU => {
-        alpha : ["yu", "ي‍‍ۇ", "ю", "yu", "yu"],
+        idx : 0,
         tp : TYPES.COMPOUNDS,
-        nm : NAMES.YU,
         ipa : "ju",
+        nm : NAMES.YU,
+        alpha : ["yu", "ي‍‍ۇ", "ю", "yu", "yu"],
     },
-
     // YA
     NAMES.YA => {
-        alpha : ["ya", "ي‍‍ا", "я", "ya", "ya"],
+        idx : 0,
         tp : TYPES.COMPOUNDS,
-        nm : NAMES.YA,
         ipa : "jɑ",
+        nm : NAMES.YA,
+        alpha : ["ya", "ي‍‍ا", "я", "ya", "ya"],
     },
-
-];
-}
 // [M[ ALPHABETS_END ]M]
+];
+    public static var INDEX_MAP : Map<LANG_KEYS, Int> = [
+        LANG_KEYS.common => 0,
+        LANG_KEYS.arabic => 1,
+        LANG_KEYS.cyrillic => 2,
+        LANG_KEYS.newly => 3,
+        LANG_KEYS.latin => 4,
+    ];
+    public static var SPECIALS_LIST = "\\\"!`'#%&,:;<>=@{}~$()*+/?[]^|؛،؟";
+    public static var SPECIALS_RULE = ~/[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|؛،؟]+/g;
+}

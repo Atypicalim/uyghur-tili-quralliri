@@ -1,24 +1,7 @@
 import haxe.EnumTools;
+import Alphabets.LANG_KEYS;
 import Alphabets.TYPES;
 import Alphabets.NAMES;
-
-// converter
-
-enum LANG_KEYS {
-    common;
-    arabic;
-    cyrillic;
-    newly;
-    latin;
-}
-
-var INDEX_MAP : Map<LANG_KEYS, Int> = [
-    LANG_KEYS.common => 0,
-    LANG_KEYS.arabic => 1,
-    LANG_KEYS.cyrillic => 2,
-    LANG_KEYS.newly => 3,
-    LANG_KEYS.latin => 4,
-];
 
 class Converter {
 
@@ -44,8 +27,8 @@ class Converter {
     public function new(from : LANG_KEYS, to : LANG_KEYS) {
         this.from = from;
         this.to = to;
-        this.fromIdx = INDEX_MAP[this.from];
-        this.toIdx = INDEX_MAP[this.to];
+        this.fromIdx = Alphabets.INDEX_MAP[this.from];
+        this.toIdx = Alphabets.INDEX_MAP[this.to];
         if (this.fromIdx == null || this.toIdx == null) {
             throw "key not supported for this language";
         }
@@ -58,7 +41,7 @@ class Converter {
 
 	private function pushName(name) {
 		var conf = Alphabets.ALPHABETS[name];
-		var idx = INDEX_MAP[this.to];
+		var idx = Alphabets.INDEX_MAP[this.to];
 		var str = conf.alpha[idx];
 		if (this.to == LANG_KEYS.arabic && conf.tp == TYPES.VOWELS && (lastAlpha == null || lastAlpha.tp == TYPES.VOWELS)) {
 			this.result.add(Alphabets.ALPHABETS[NAMES.HEMZE].alpha[this.toIdx]);
@@ -94,7 +77,7 @@ class Converter {
 
     private function getAlphabet(ch : String) : Dynamic {
         for(conf in Alphabets.ALPHABETS) {
-            var idx = INDEX_MAP[this.from];
+            var idx = Alphabets.INDEX_MAP[this.from];
             if (conf.alpha[idx] == ch) {
                 return conf;
             }
