@@ -8,8 +8,6 @@ CodeBuilder = require "./my-build-tools/code_builder"
 
 require('./alphabets')
 
--- os.execute("haxe ./converter.hxml")
--- os.execute("haxe ./syllable.hxml")
--- os.execute("haxe ./keyboard.hxml")
-
-
+-- os.execute("haxe ./hxml/converter.hxml")
+-- os.execute("haxe ./hxml/syllable.hxml")
+-- os.execute("haxe ./hxml/keyboard.hxml")
