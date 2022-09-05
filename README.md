@@ -6,4 +6,6 @@
 
 * https://github.com/neouyghur/Multiple-Uyghur-Script-Converter
 
+* https://github.com/gheyret/sanoqughu
+
 * wikipediadiki yeziqimizgha munasiwetlik yazmilar 
