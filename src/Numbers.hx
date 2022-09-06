@@ -84,8 +84,12 @@ class Numbers {
         }
     }
 
-    private static function process(text : String) : String {
-        var num : Int = Std.parseInt(text);
+    private static function appendFloatSuffix(text : String) : String {
+        text = text + "دا ";
+        return text;
+    }
+
+    private static function process(num : Int) : String {
         if (num <= 0) {
             return ZERO;
         }
@@ -95,9 +99,7 @@ class Numbers {
             times++;
             var n : Int = num % 10;
             var s : String = getNumName(n);
-            trace(text, times, n, s);
             s = appendNumTimes(times, n, s);
-            trace(s);
             result.insert(0, s);
             num = Std.int((num - n) / 10);
         }
@@ -108,17 +110,30 @@ class Numbers {
 
     public static function read(text: String) : String {
         text = StringTools.trim(text);
+        trace("text", text);
         var dot = ~/^\d+(\.\d+)*$/gi;
         var isMatch = dot.match(text);
         if (!isMatch) return "";
         var numStr = dot.matched(0);
         var num = Std.parseFloat(numStr);
+        trace("num", num);
         dot = ~/\./gi;
         var nums = dot.split(Std.string(num));
         if (nums.length == 1) {
-            return process(nums[0]);
+            var num1 : Int = Std.parseInt(nums[0]);
+            return process(num1);
         } else {
-            return process(nums[0]) + " پۈتۈن " + process(nums[1]);
+            var num1 : Int = Std.parseInt(nums[0]);
+            var num2 : Int = Std.parseInt(nums[1]);
+            var numx : Int = 10;
+            while (numx < num2) {
+                numx *= 10;
+            }
+            var text1 = process(num1);
+            var text2 = process(num2);
+            var textX = process(numx);
+            trace("numx", numx, textX);
+            return text1 + " پۈتۈن " + appendFloatSuffix(textX) + text2;
         }
         return "";
     }
@@ -126,7 +141,7 @@ class Numbers {
     static function main() {
         trace("numbers...");
         // var txt = "123";
-        var txt = "123.4";
+        var txt = "123.456";
         var r : String = read(txt);
         trace(r);
         #if sys
