@@ -168,10 +168,7 @@ NAME_DATA_MAP["ALPHABETS"] = alphabets
 
 local builder = CodeBuilder(false)
 local source = "./src/Alphabets.hx"
-
 local isSkip = {}
-local isSkipAlphabet = false
-
 
 builder:setInput(source)
 builder:setComment("//")

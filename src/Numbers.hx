@@ -1,4 +1,7 @@
-// syllable
+// numbers
+
+// [M[ HEAD_BEGIN ]M]
+// [M[ HEAD_FINISH ]M]
 
 class Numbers {
 
@@ -46,7 +49,7 @@ class Numbers {
         "تا"
     ];
 
-    private function new() {
+    public function new() {
     }
 
     private static function getNumName(num : Int) : String {
@@ -106,8 +109,6 @@ class Numbers {
             }
             num = Std.int((num - n) / 10);
         }
-        trace("-----------");
-        trace(result);
         return result.join(" ");
     }
 
@@ -131,15 +132,12 @@ class Numbers {
 
     public static function read(text: String) : String {
         text = StringTools.trim(text);
-        trace("text", text);
-        var dot = ~/^\d+(\.\d+)*$/gi;
-        var isMatch = dot.match(text);
-        if (!isMatch) return "";
-        var numStr = dot.matched(0);
-        var num = Std.parseFloat(numStr);
-        trace("num", num);
-        dot = ~/\./gi;
-        var nums = dot.split(Std.string(num));
+        //
+        var num = Std.parseFloat(text);
+        var str = Std.string(num);
+        if (str == "nan") return "";
+        //
+        var nums = Alphabets.splitByDelimiter(Std.string(num), ".");
         if (nums.length == 1) {
             var num1 : Int = Std.parseInt(nums[0]);
             return processRead(num1);
@@ -150,7 +148,6 @@ class Numbers {
             var text1 = processRead(num1);
             var text2 = processRead(num2);
             var textX = processRead(numx);
-            trace("numx", numx, textX);
             return text1 + " " + COMPLETE + " " + appendFloatSuffix(textX) + " " + text2;
         }
         return "";
@@ -205,8 +202,7 @@ class Numbers {
 
     
     public static function write(text: String) : String {
-        var r = ~/\s+/gi;
-        var words = r.split(text);
+        var words = Alphabets.splitByDelimiter(text, " ");
         var dotIndex = -1;
         for(k => v in words) {
             if (v == COMPLETE) {
@@ -245,22 +241,6 @@ class Numbers {
             var temp = StringTools.lpad(right, "0", power); 
             return left + "." + temp;
         }
-    }
-
-    static function main() {
-        trace("read...");
-        // var txt = "0";
-        // var txt = "12345678";
-        // var txt = "100001";
-        var txt = "123.40110001";
-        var r : String = read(txt);
-        trace(r);
-        #if sys
-            sys.io.File.saveContent('output/test.txt', r);
-        #end
-        trace("write...");
-        trace(write(r));
-
     }
 
 }

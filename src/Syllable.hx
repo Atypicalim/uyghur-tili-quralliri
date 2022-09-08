@@ -1,9 +1,11 @@
 
 // syllable
 
+// [M[ HEAD_BEGIN ]M]
 import Alphabets.LANG_KEYS;
 import Alphabets.TYPES;
 import Alphabets.NAMES;
+// [M[ HEAD_FINISH ]M]
 
 class Syllable {
 
@@ -93,12 +95,8 @@ class Syllable {
     }
 
     public static function parse(text: String) : String {
-        text = Alphabets.SPECIALS_RULE.replace(text, " ");
-        var r1 = ~/\s+/g;
-        text = r1.replace(text, " ");
-        text = StringTools.trim(text);
-        var r2 = ~/\s+/g;
-        var words : Array<String> = r2.split(text);
+        text = Alphabets.replaceAllSpecials(text, " ");
+        var words : Array<String> = Alphabets.splitByDelimiter(text);
         var r : StringBuf = new StringBuf();
         for(word in words) {
             var syllable = new Syllable();
@@ -107,18 +105,6 @@ class Syllable {
             r.add(temp);
         }
         return r.toString();
-    }
-
-    static function main() {
-        trace("syllable...");
-        var txt = "ئاھلىرىم";
-        // var txt = "تاشئالما";
-        // var txt = "خەلقنىڭكىنى";
-        // var txt = "ئالمىخانغا";
-        // var txt = "مۆھتىرەم";
-        var r : String = parse(txt);
-        trace(r);
-
     }
 
 }

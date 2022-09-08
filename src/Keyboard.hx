@@ -1,5 +1,7 @@
-
 // keybaord
+
+// [M[ HEAD_BEGIN ]M]
+// [M[ HEAD_FINISH ]M]
 
 var KEYCODES : Map<Int, Array<String>> = [
     65 => ["a", "ھ", ""],
@@ -48,11 +50,6 @@ class Keyboard {
             return isSHiftPressed ? values[2] : values[1];
         }
         return null;
-    }
-
-    static function main() {
-        trace("keybaord...");
-        trace(parseAlphabet(true, "f"));
     }
 
 }

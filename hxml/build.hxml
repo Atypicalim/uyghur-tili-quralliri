@@ -1,0 +1,17 @@
+--class-path ./
+--dce full
+Tools
+
+--each
+
+--js output/tools_lib.js
+--next
+
+--python output/tools.py
+--next
+
+--lua output/tools.lua
+-D lua-vanilla
+--next
+
+--interp

@@ -1,5 +1,6 @@
 // Alphabets
 
+
 enum LANG_KEYS {
     common;
     arabic;
@@ -382,6 +383,7 @@ public static var ALPHABETS = [
     },
 // [M[ ALPHABETS_END ]M]
 ];
+
     public static var INDEX_MAP : Map<LANG_KEYS, Int> = [
         LANG_KEYS.common => 0,
         LANG_KEYS.arabic => 1,
@@ -389,6 +391,54 @@ public static var ALPHABETS = [
         LANG_KEYS.newly => 3,
         LANG_KEYS.latin => 4,
     ];
+
+    public static var NUMBERS_LIST = "1234567890";
     public static var SPECIALS_LIST = "\\\"!`'#%&,:;<>=@{}~$()*+/?[]^|؛،؟";
-    public static var SPECIALS_RULE = ~/[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|؛،؟]+/g;
+
+    public static function replaceAllSpecials(text : String, replacement : String) : String {
+        if (text.length == 0) return text;
+        var buf = new StringBuf();
+        var idx = 0;
+        while (idx < text.length) {
+            var ch = text.substr(idx, 1);
+            buf.add(SPECIALS_LIST.indexOf(ch) >= 0 ? " " : ch);
+            idx++;
+        }
+        return buf.toString();
+    }
+
+    public static function mergeAllSpace(text : String) : String {
+        text = StringTools.trim(text);
+        if (text.length == 0) return text;
+        var buf = new StringBuf();
+        var idx = 0;
+        var isSpace = false;
+        while (idx < text.length) {
+            var ch = text.substr(idx, 1);
+            if (!isSpace || ch != " ") buf.add(ch);
+            isSpace = ch == " ";
+            idx++;
+        }
+        return buf.toString();
+    }
+
+    public static function splitByDelimiter(text : String, delimiter = " ") : Array<String> {
+        var arr = new Array<String>();
+        var buf = new StringBuf();
+        var idx = 0;
+        text = mergeAllSpace(text);
+        if (text.length == 0) return arr;
+        while (idx < text.length) {
+            var ch = text.substr(idx, 1);
+            if (ch == delimiter) {
+                arr.push(buf.toString());
+                buf = new StringBuf();
+            } else {
+                buf.add(ch);
+            }
+            idx++;
+        }
+        arr.push(buf.toString());
+        return arr;
+    }
 }

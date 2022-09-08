@@ -1,7 +1,9 @@
 
 // reshaper
 
+// [M[ HEAD_BEGIN ]M]
 import haxe.iterators.StringIterator;
+// [M[ HEAD_FINISH ]M]
 
 enum UyHarp {
     BASH;
@@ -44,10 +46,6 @@ var la2 = new LA_Class('ﻠ', 'ﺎ', 'ﻼ');
 class Reshaper {
 
     // init
-
-    private static function init() {
-        //
-    }
 
     public function new() {
     }
@@ -135,8 +133,8 @@ class Reshaper {
         }
         return character;
     }
-
-    private function toExt(text : String) : String {
+    
+    private function toExttended(text : String) : String {
         if (text.length == 0) {
             return "";
         }
@@ -206,7 +204,7 @@ class Reshaper {
         return this.ProLA_HAMZE(str);
     }
 
-    private function toBase(text : String) : String {
+    private function toBasical(text : String) : String {
         if (text.length == 0) {
             return "";
         }
@@ -236,24 +234,12 @@ class Reshaper {
         return arrayToString(result);
     }
 
-    static function main() {
-        init();
-		// var origin = "شاڭخەي";
-		// var origin = "قول باش پۇت كۆز";
-		// var origin = "مائارىپ مۇئەللىم دائىرە مۇئەييەن تەبىئىي پائالىيەت ئۆزبېكىستانغا ھىنگان چەكلەنگەن گاڭگىراپ باشلانغۇچ جەمئىيەت";
-		// var origin = "ئەسئەت";
-		// var origin = "گاڭگىراپ";
-		var origin = "جەمئىيەت";
-        trace("origin", origin);
-        var reshaper = new Reshaper();
-        var result = reshaper.toExt(origin);
-        trace("result", result);
-        var reverse = reshaper.toBase(result);
-        trace("reverse", reverse);
-        // #if sys
-        //     sys.io.File.saveContent('output/test.txt',reverse);
-        // #end
-        trace("reshaper...");
+    public static function toExt(text : String) : String {
+        return new Reshaper().toExttended(text);
+    }
+
+    public static function toBase(text : String) : String {
+        return new Reshaper().toBasical(text);
     }
 
 }

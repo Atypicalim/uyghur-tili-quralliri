@@ -1,7 +1,11 @@
+// converter
+
+// [M[ HEAD_BEGIN ]M]
 import haxe.EnumTools;
 import Alphabets.LANG_KEYS;
 import Alphabets.TYPES;
 import Alphabets.NAMES;
+// [M[ HEAD_FINISH ]M]
 
 class Converter {
 
@@ -20,11 +24,7 @@ class Converter {
     private var chCurr : String = null;
     private var chNext : String = null;
 
-    private static function init() {
-        //
-    }
-
-    public function new(from : LANG_KEYS, to : LANG_KEYS) {
+    private function new(from : LANG_KEYS, to : LANG_KEYS) {
         this.from = from;
         this.to = to;
         this.fromIdx = Alphabets.INDEX_MAP[this.from];
@@ -169,28 +169,6 @@ class Converter {
         var converter = new Converter(fromLang, toLang);
         var result = converter.convert(text);
         return result;
-    }
-
-    static function main() {
-        init();
-		// var origin = "شاڭخەي";
-		// var origin = "قول باش پۇت كۆز";
-		// var origin = "مائارىپ مۇئەللىم دائىرە مۇئەييەن تەبىئىي پائالىيەت ئۆزبېكىستانغا ھىنگان چەكلەنگەن گاڭگىراپ باشلانغۇچ جەمئىيەت";
-		// var origin = "ئەسئەت";
-		// var origin = "گاڭگىراپ";
-		// var origin = "جەمئىيەت";
-		var origin = "ئالىمجان يۈسەن ۋە ئەسئەتجان سۇ تۇتتى.";
-        trace("origin", origin);
-        var converter = new Converter(LANG_KEYS.arabic, LANG_KEYS.common);
-        var result = converter.convert(origin);
-        trace("result", result);
-        converter = new Converter(LANG_KEYS.common, LANG_KEYS.arabic);
-        var reverse = converter.convert(result);
-        trace("reverse", reverse);
-        #if sys
-            sys.io.File.saveContent('output/test.txt',reverse);
-        #end
-        trace("converter...");
     }
 
 }
