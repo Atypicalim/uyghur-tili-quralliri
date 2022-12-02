@@ -37,17 +37,23 @@ var KEYCODES : Map<Int, Array<String>> = [
 
 class Keyboard {
 
-    public static function parseKeycode(isSHiftPressed : Bool, code : Int) : String {
-        var values : Array<String> = KEYCODES[code];
-        if (values == null) return null;
-        return isSHiftPressed ? values[2] : values[1];
+
+    public static function toAlphabet(alphabet : String, isSHiftPressed : Bool) : String {
+        if (alphabet.length != 1) return null;
+        var index = isSHiftPressed ? 2 : 1;
+        for (_ => values in KEYCODES) {
+            if (values[index] != alphabet) continue;
+            return values[0];
+        }
+        return null;
     }
 
-    public static function parseAlphabet(isSHiftPressed : Bool, alphabet : String) : String {
+    public static function fromAlphabet(alphabet : String, isSHiftPressed : Bool) : String {
         if (alphabet.length != 1) return null;
+        var index = isSHiftPressed ? 2 : 1;
         for (_ => values in KEYCODES) {
             if (values[0] != alphabet) continue;
-            return isSHiftPressed ? values[2] : values[1];
+            return values[index];
         }
         return null;
     }

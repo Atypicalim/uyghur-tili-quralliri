@@ -59,4 +59,4 @@ local content = files.read(target, "r")
 files.write(target, headers, "w")
 files.write(target, content, "a")
 
-os.execute("haxe ./hxml/build.hxml")
+os.execute("haxe ./hxml/run.hxml")
