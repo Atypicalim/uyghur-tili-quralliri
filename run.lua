@@ -9,8 +9,8 @@ CodeBuilder = require "./my-build-tools/code_builder"
 require('./alphabets')
 
 do
-    -- os.execute("haxe ./hxml/run.hxml")
-    -- os.execute("haxe ./hxml/build.hxml")
+    -- os.execute("haxe ./others/run.hxml")
+    -- os.execute("haxe ./others/build.hxml")
     -- return
 end
 
@@ -59,4 +59,4 @@ local content = files.read(target, "r")
 files.write(target, headers, "w")
 files.write(target, content, "a")
 
-os.execute("haxe ./hxml/run.hxml")
+os.execute("haxe ./others/build.hxml")

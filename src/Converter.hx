@@ -12,8 +12,8 @@ class Converter {
     // init
     private var from : LANG_KEYS;
     private var to : LANG_KEYS;
-    private var fromIdx : Int = null;
-    private var toIdx : Int = null;
+    private var fromIdx : Int = -1;
+    private var toIdx : Int = -1;
 	// process
     private var text : String = null;
     private var index : Int = 0;
@@ -29,7 +29,7 @@ class Converter {
         this.to = to;
         this.fromIdx = Alphabets.INDEX_MAP[this.from];
         this.toIdx = Alphabets.INDEX_MAP[this.to];
-        if (this.fromIdx == null || this.toIdx == null) {
+        if (this.fromIdx < 0 || this.toIdx < 0) {
             throw "key not supported for this language";
         }
     }

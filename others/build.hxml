@@ -1,0 +1,26 @@
+--class-path ./
+--dce full
+Tools
+
+--each
+
+--js release/Tools.js
+
+--next
+--python release/Tools.py
+
+--next
+--jvm release/Tools.jar
+--main Tools
+
+--next
+--php release/Tools_php
+--main Tools
+-cmd ""php ./others/phar.php""
+
+--next
+# --lua release/tools.lua
+# -D lua-vanilla
+
+# --next
+--interp

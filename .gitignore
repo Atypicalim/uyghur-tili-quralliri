@@ -2,3 +2,5 @@ my-build-tools
 pure-lua-tools
 output
 /Tools.hx
+*.pyc
+*/Tools_php/
