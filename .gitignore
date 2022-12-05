@@ -1,6 +1,6 @@
 my-build-tools
 pure-lua-tools
 output
-/Tools.hx
+/UyghurLanguageTools.hx
 *.pyc
 */Tools_php/
