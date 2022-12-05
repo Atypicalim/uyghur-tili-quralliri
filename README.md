@@ -22,7 +22,7 @@
 
 1. arab yeziqini kengeytilgen rayun we asasin rayun arisida aylandurush
 
-```java
+```haxe
 // asasiy rayun parametiri : مەرھابا
 toExtended(text : String) : String // kengeytilgen rayun natije : ﺎﺑﺎﮬﺭﻪﻣ
 // asasiy rayun parametiri : ﺎﺑﺎﮬﺭﻪﻣ
@@ -31,7 +31,7 @@ fromExtended(text : String) : String // kengeytilgen rayun natije : مەرھاب
 
 2. arab yeziqini bashqa yeziqqa aylandurush
 
-```java
+```haxe
 // arab yeziqi parametiri: مەرھابا
 toCommon(text : String) : String // ortaq yeziq netije : märhaba
 toCyrillic(text : String) : String // kiril yeziqi netije : мәрһaбa
@@ -40,7 +40,7 @@ toLatin(text : String) : String // latin yeziqi netije : merhaba
 
 3. bashqa yeziqni arab yeziqigha aylandurush
 
-```java
+```haxe
 fromCommon(text : String) : String // ortaq yeziq parametiri : märhaba
 fromCyrillic(text : String) : String // kiril yeziqi parametiri : мәрһaбa
 fromLatin(text : String) : String // latin yeziqi parametiri : merhaba
@@ -49,7 +49,7 @@ fromLatin(text : String) : String // latin yeziqi parametiri : merhaba
 
 4. yekke harip we kunupka taxtisi ara aylandurush
 
-```java
+```haxe
 // yekke herip : گ , Shift besildimu : true -> g
 toAlphabet(text : String, isSHiftPressed : Bool) : String
 // englizche herip : g , Shift besildimu : true -> گ
@@ -58,7 +58,7 @@ fromAlphabet(alphabet : String, isSHiftPressed : Bool) : String
 
 5. sozni bughumgha ayrish
 
-```java
+```haxe
 // normal soz : مەرھابا
 doSyllable(text : String) : String
 // ayrilghan bughum : مەر ھا با
@@ -66,7 +66,7 @@ doSyllable(text : String) : String
 
 6. sanlarni oqush we yezish
 
-```java
+```haxe
 // san : 123.4011 -> بىر يۈز يىگىرمە ئۈچ پۈتۈن ئون مىڭدا تۆت مىڭ ئون بىر
 readNumber(text : String) : String
 // xet : بىر مىڭ يەتتە يۈز بىر پۈتۈن يۈزدە بىر -> 1701.01
