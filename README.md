@@ -6,15 +6,17 @@
 
 ## 2. Qollaydighan tillar
 
-* [C#](./example/example.cs)
+* [x] [C#](./example/example.cs)
 
-* [Java](./example/example.java)
+* [x] [Java](./example/example.java)
 
-* [Node](./example/example.js)
+* [x] [Node](./example/example.js)
 
-* [PHP](./example/example.php)
+* [x] [PHP](./example/example.php)
 
-* [Python](./example/example.python)
+* [x] [Python](./example/example.python)
+
+* [ ] Lua
 
 ## 3. Qolllinishchan fonkisiyeler
 
@@ -79,4 +81,4 @@ writeNumber(text : String) : String
 
 * https://github.com/gheyret/sanoqughu
 
-* wikipediadiki yeziqimizgha munasiwetlik yazmilar 
+> bashqa qurallarni qushush lazim bolsa inkas qaldurghaysiz ...  
