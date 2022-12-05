@@ -1,25 +1,32 @@
 --class-path ./
 --dce full
-Tools
+UyghurLanguageTools
 
 --each
 
---js release/Tools.js
+--js release/UyghurLanguageTools.js
 
 --next
---python release/Tools.py
+--python release/UyghurLanguageTools.py
 
 --next
---jvm release/Tools.jar
---main Tools
+--jvm release/UyghurLanguageTools.jar
+--main UyghurLanguageTools
 
 --next
 --php release/Tools_php
---main Tools
--cmd ""php ./others/phar.php""
+--main UyghurLanguageTools
+-cmd "php ./others/phar.php"
 
 --next
-# --lua release/tools.lua
+--cs release/Tools_csharp
+--main UyghurLanguageTools
+-D dll
+-cmd "cp release/Tools_csharp/bin/UyghurLanguageTools.dll release/"
+-cmd "rm -rf release/Tools_csharp"
+
+--next
+# --lua release/UyghurLanguageTools.lua
 # -D lua-vanilla
 
 # --next

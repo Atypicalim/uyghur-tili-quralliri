@@ -1,5 +1,5 @@
 --class-path src
 --dce full
---main Tools
+--main UyghurLanguageTools
 
 --interp

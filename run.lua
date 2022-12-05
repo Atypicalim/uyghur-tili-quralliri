@@ -15,7 +15,7 @@ do
 end
 
 local builder = CodeBuilder(false)
-local target = "./Tools.hx"
+local target = "./UyghurLanguageTools.hx"
 local heads = {}
 local isHead = false
 
@@ -26,7 +26,7 @@ builder:setInput(
     "./src/Numbers.hx",
     "./src/Reshaper.hx",
     "./src/Syllable.hx",
-    "./src/Tools.hx"
+    "./src/UyghurLanguageTools.hx"
 )
 builder:setComment("//")
 builder:addHeader()
@@ -59,4 +59,4 @@ local content = files.read(target, "r")
 files.write(target, headers, "w")
 files.write(target, content, "a")
 
-os.execute("haxe ./others/build.hxml")
+os.execute("haxe ./others/run.hxml")
