@@ -8,13 +8,13 @@
 
 * [x] [C#](./example/example.cs)
 
-* [x] [Java](./example/example.java)
+* [x] [Java](./example/Example.java)
 
 * [x] [Node](./example/example.js)
 
 * [x] [PHP](./example/example.php)
 
-* [x] [Python](./example/example.python)
+* [x] [Python](./example/example.py)
 
 * [ ] Lua
 
