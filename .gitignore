@@ -4,3 +4,6 @@ output
 /UyghurLanguageTools.hx
 *.pyc
 */Tools_php/
+
+packages/**/node_modules/
+packages/npm/*.js

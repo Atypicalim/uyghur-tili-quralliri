@@ -1,0 +1,28 @@
+{
+  "name": "uyghur-tili-quralliri",
+  "version": "0.1.2",
+  "description": "uyghur language writing and processing tool box ...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kompasim/uyghur-tili-quralliri.git"
+  },
+  "keywords": [
+    "uyghur",
+    "uighur",
+    "til",
+    "yeziq",
+    "qural",
+    "language",
+    "tools"
+  ],
+  "author": "kompasim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kompasim/uyghur-tili-quralliri/issues"
+  },
+  "homepage": "https://kompasim.github.io/"
+}
