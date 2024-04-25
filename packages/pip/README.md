@@ -7,7 +7,7 @@
 ## 1. Installing
 
 ```cmd
-pip install -g uyghur-tili-quralliri
+pip install uyghur-tili-quralliri
 ```
 
 ## 2. Usage

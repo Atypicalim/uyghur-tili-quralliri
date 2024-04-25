@@ -7,7 +7,7 @@
 ## 1. Installing
 
 ```cmd
-npm install -g uyghur-tili-quralliri
+npm install uyghur-tili-quralliri
 ```
 
 ## 2. Usage

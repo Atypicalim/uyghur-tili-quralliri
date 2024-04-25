@@ -10,11 +10,11 @@
 
 * [x] [Java](./example/Example.java)
 
-* [x] [Node](./example/example.js)
+* [x] [Node](https://www.npmjs.com/package/uyghur-tili-quralliri)
 
 * [x] [PHP](./example/example.php)
 
-* [x] [Python](./example/example.py)
+* [x] [Python](https://pypi.org/project/uyghur-tili-quralliri/)
 
 * [ ] Lua
 

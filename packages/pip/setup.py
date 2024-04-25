@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name = "uyghur-tili-quralliri",
-    version = "0.1.3",
+    version = "0.1.4",
     keywords = ("uyghur", "uighur","til", "yeziq", "qural", "language", "tools"),
     description = "uyghur language writing and processing tool box ...",
     long_description = long_description,
