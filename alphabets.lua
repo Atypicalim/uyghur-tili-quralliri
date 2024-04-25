@@ -166,13 +166,12 @@ end
 NAME_DATA_MAP["ALPHABETS"] = alphabets
 -- 
 
-local builder = CodeBuilder(false)
+local builder = builder.code {}
 local source = "./src/Alphabets.hx"
 local isSkip = {}
 
 builder:setInput(source)
 builder:setComment("//")
-builder:handleMacro(true)
 builder:onMacro(function(code, command)
     local name, tp = unpack(string.explode(command, "_"))
     if tp == "START" then

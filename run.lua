@@ -1,10 +1,11 @@
 -- run
 
 -- pcall(os.execute, "git clone git@github.com:kompasim/my-build-tools.git ./my-build-tools")
-package.path = package.path .. ";./my-build-tools/?.lua"
 package.path = package.path .. ";./pure-lua-tools/?.lua"
-require "./pure-lua-tools/test"
-CodeBuilder = require "./my-build-tools/code_builder"
+package.path = package.path .. ";./../pure-lua-tools/?.lua"
+package.path = package.path .. ";./my-build-tools/?.lua"
+package.path = package.path .. ";./../my-build-tools/?.lua"
+local builder = require("builder")
 
 require('./alphabets')
 
@@ -14,7 +15,7 @@ do
     -- return
 end
 
-local builder = CodeBuilder(false)
+local builder = builder.code {}
 local target = "./UyghurLanguageTools.hx"
 local heads = {}
 local isHead = false
@@ -29,8 +30,6 @@ builder:setInput(
     "./src/UyghurLanguageTools.hx"
 )
 builder:setComment("//")
-builder:addHeader()
-builder:handleMacro(true)
 builder:onMacro(function(code, command)
     if command == "HEAD_BEGIN" then
         isHead = true
