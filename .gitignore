@@ -7,3 +7,7 @@ output
 
 packages/**/node_modules/
 packages/npm/*.js
+
+packages/pip/**.egg-info
+packages/pip/dist/
+packages/pip/**/UyghurLanguageTools.py
