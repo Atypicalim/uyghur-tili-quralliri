@@ -1,8 +1,5 @@
 // numbers
 
-// [M[ HEAD_BEGIN ]M]
-// [M[ HEAD_FINISH ]M]
-
 class Numbers {
 
     private static var valid : Bool = false;

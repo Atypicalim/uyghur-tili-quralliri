@@ -29,5 +29,8 @@ UyghurLanguageTools
 # --lua release/UyghurLanguageTools.lua
 # -D lua-vanilla
 
+--next
+-cmd "cp ./UyghurLanguageTools.hx release/"
+
 # --next
 --interp

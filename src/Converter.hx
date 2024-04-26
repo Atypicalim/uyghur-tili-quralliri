@@ -1,11 +1,10 @@
 // converter
 
-// [M[ HEAD_BEGIN ]M]
-import haxe.EnumTools;
-import Alphabets.LANG_KEYS;
-import Alphabets.TYPES;
-import Alphabets.NAMES;
-// [M[ HEAD_FINISH ]M]
+import haxe.EnumTools; // [M[ HEAD_RAISE ]M]
+
+import Alphabets.LANG_KEYS; // [M[ HEAD_IGNORE ]M]
+import Alphabets.TYPES; // [M[ HEAD_IGNORE ]M]
+import Alphabets.NAMES; // [M[ HEAD_IGNORE ]M]
 
 class Converter {
 

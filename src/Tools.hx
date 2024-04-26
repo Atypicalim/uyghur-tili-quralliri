@@ -1,12 +1,6 @@
 
 // UyghurLanguageTools
 
-// [M[ HEAD_BEGIN ]M]
-import Alphabets.LANG_KEYS;
-import Alphabets.TYPES;
-import Alphabets.NAMES;
-// [M[ HEAD_FINISH ]M]
-
 @:keep
 @:expose
 class UyghurLanguageTools {
@@ -47,12 +41,12 @@ class UyghurLanguageTools {
         return Converter.work("arabic", "latin", text);
     }
 
-    public static function toAlphabet(text : String, isSHiftPressed : Bool) : String {
-        return Keyboard.toAlphabet(text, isSHiftPressed);
+    public static function toAlphabet(character : String) : String {
+        return Keyboard.toAlphabet(character);
     }
 
-    public static function fromAlphabet(alphabet : String, isSHiftPressed : Bool) : String {
-        return Keyboard.fromAlphabet(alphabet, isSHiftPressed);
+    public static function fromAlphabet(alphabet : String) : String {
+        return Keyboard.fromAlphabet(alphabet);
     }
 
     public static function doSyllable(text : String) : String {

@@ -7,7 +7,7 @@ package.path = package.path .. ";./my-build-tools/?.lua"
 package.path = package.path .. ";./../my-build-tools/?.lua"
 local builder = require("builder")
 
-require('./alphabets')
+-- require('./alphabets')
 
 do
     -- os.execute("haxe ./others/run.hxml")
@@ -18,8 +18,8 @@ end
 local builder = builder.code {}
 local target = "./UyghurLanguageTools.hx"
 local heads = {}
-local isHead = false
 
+-- merge files
 builder:setInput(
     "./src/Alphabets.hx",
     "./src/Converter.hx",
@@ -27,35 +27,24 @@ builder:setInput(
     "./src/Numbers.hx",
     "./src/Reshaper.hx",
     "./src/Syllable.hx",
-    "./src/UyghurLanguageTools.hx"
+    "./src/Tools.hx"
 )
 builder:setComment("//")
 builder:onMacro(function(code, command)
-    if command == "HEAD_BEGIN" then
-        isHead = true
-    elseif command == "HEAD_FINISH" then
-        isHead = false
-    end
-end)
-builder:onLine(function(line)
-    if isHead then
-        heads[line] = string.find(line, "Alphabets") == nil
-    else
-        return line
+    if command == "HEAD_RAISE" then
+        table.insert(heads, code)
+    elseif command == "HEAD_IGNORE" then
+        return nil
     end
 end)
 builder:setOutput(target)
 builder:start()
 
-local headers = ""
-for k,v in pairs(heads) do
-    if v then
-        headers = headers .. k .. "\n"
-    end
-end
-
+-- prepend header
+local headers = table.concat(heads, "\n")
 local content = files.read(target, "r")
 files.write(target, headers, "w")
 files.write(target, content, "a")
 
+-- run target
 os.execute("haxe ./others/run.hxml")

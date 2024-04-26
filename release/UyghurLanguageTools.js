@@ -459,11 +459,12 @@ Converter.prototype = {
 };
 var Keyboard = function() { };
 Keyboard.__name__ = true;
-Keyboard.toAlphabet = function(alphabet,isSHiftPressed) {
-	if(alphabet.length != 1) {
+Keyboard.toAlphabet = function(character) {
+	if(character.length != 1) {
 		return null;
 	}
-	var index = isSHiftPressed ? 2 : 1;
+	var isUpper = false;
+	var alphabet = null;
 	var map = UyghurLanguageTools_KEYCODES;
 	var _g_map = map;
 	var _g_keys = map.keys();
@@ -473,18 +474,31 @@ Keyboard.toAlphabet = function(alphabet,isSHiftPressed) {
 		var _g1_key = key;
 		var _ = _g1_key;
 		var values = _g1_value;
-		if(values[index] != alphabet) {
-			continue;
+		if(values[1] == character) {
+			alphabet = values[0];
+			isUpper = false;
+			break;
+		} else if(values[2] == character) {
+			alphabet = values[0];
+			isUpper = true;
+			break;
 		}
-		return values[0];
 	}
-	return null;
+	if(alphabet != null && isUpper == true) {
+		alphabet = alphabet.toUpperCase();
+	}
+	return alphabet;
 };
-Keyboard.fromAlphabet = function(alphabet,isSHiftPressed) {
+Keyboard.fromAlphabet = function(alphabet) {
 	if(alphabet.length != 1) {
 		return null;
 	}
-	var index = isSHiftPressed ? 2 : 1;
+	var index = 1;
+	var isUpper = alphabet.toUpperCase() == alphabet;
+	if(isUpper) {
+		alphabet = alphabet.toLowerCase();
+		index = 2;
+	}
 	var map = UyghurLanguageTools_KEYCODES;
 	var _g_map = map;
 	var _g_keys = map.keys();
@@ -1141,11 +1155,11 @@ UyghurLanguageTools.fromCyrillic = function(text) {
 UyghurLanguageTools.fromLatin = function(text) {
 	return Converter.work("arabic","latin",text);
 };
-UyghurLanguageTools.toAlphabet = function(text,isSHiftPressed) {
-	return Keyboard.toAlphabet(text,isSHiftPressed);
+UyghurLanguageTools.toAlphabet = function(character) {
+	return Keyboard.toAlphabet(character);
 };
-UyghurLanguageTools.fromAlphabet = function(alphabet,isSHiftPressed) {
-	return Keyboard.fromAlphabet(alphabet,isSHiftPressed);
+UyghurLanguageTools.fromAlphabet = function(alphabet) {
+	return Keyboard.fromAlphabet(alphabet);
 };
 UyghurLanguageTools.doSyllable = function(text) {
 	return Syllable.parse(text);
@@ -1157,7 +1171,7 @@ UyghurLanguageTools.writeNumber = function(text) {
 	return Numbers.write(text);
 };
 UyghurLanguageTools.main = function() {
-	console.log("UyghurLanguageTools.hx:1352:","Uyghur Language Tools (" + UyghurLanguageTools.getVersion() + "), for more infomation please visit https://github.com/kompasim");
+	console.log("UyghurLanguageTools.hx:1363:","Uyghur Language Tools (" + UyghurLanguageTools.getVersion() + "), for more infomation please visit https://github.com/kompasim");
 };
 var haxe_IMap = function() { };
 haxe_IMap.__name__ = true;

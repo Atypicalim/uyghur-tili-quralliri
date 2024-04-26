@@ -699,10 +699,11 @@ class Keyboard:
     _hx_statics = ["toAlphabet", "fromAlphabet"]
 
     @staticmethod
-    def toAlphabet(alphabet,isSHiftPressed):
-        if (len(alphabet) != 1):
+    def toAlphabet(character):
+        if (len(character) != 1):
             return None
-        index = (2 if isSHiftPressed else 1)
+        isUpper = False
+        alphabet = None
         _hx_map = _UyghurLanguageTools_UyghurLanguageTools_Fields_.KEYCODES
         _g_map = _hx_map
         _g_keys = _hx_map.keys()
@@ -712,16 +713,27 @@ class Keyboard:
             _g1_key = key
             _ = _g1_key
             values = _g1_value
-            if ((values[index] if index >= 0 and index < len(values) else None) != alphabet):
-                continue
-            return (values[0] if 0 < len(values) else None)
-        return None
+            if ((values[1] if 1 < len(values) else None) == character):
+                alphabet = (values[0] if 0 < len(values) else None)
+                isUpper = False
+                break
+            elif ((values[2] if 2 < len(values) else None) == character):
+                alphabet = (values[0] if 0 < len(values) else None)
+                isUpper = True
+                break
+        if ((alphabet is not None) and ((isUpper == True))):
+            alphabet = alphabet.upper()
+        return alphabet
 
     @staticmethod
-    def fromAlphabet(alphabet,isSHiftPressed):
+    def fromAlphabet(alphabet):
         if (len(alphabet) != 1):
             return None
-        index = (2 if isSHiftPressed else 1)
+        index = 1
+        isUpper = (alphabet.upper() == alphabet)
+        if isUpper:
+            alphabet = alphabet.lower()
+            index = 2
         _hx_map = _UyghurLanguageTools_UyghurLanguageTools_Fields_.KEYCODES
         _g_map = _hx_map
         _g_keys = _hx_map.keys()
@@ -1414,12 +1426,12 @@ class UyghurLanguageTools:
         return Converter.work("arabic","latin",text)
 
     @staticmethod
-    def toAlphabet(text,isSHiftPressed):
-        return Keyboard.toAlphabet(text,isSHiftPressed)
+    def toAlphabet(character):
+        return Keyboard.toAlphabet(character)
 
     @staticmethod
-    def fromAlphabet(alphabet,isSHiftPressed):
-        return Keyboard.fromAlphabet(alphabet,isSHiftPressed)
+    def fromAlphabet(alphabet):
+        return Keyboard.fromAlphabet(alphabet)
 
     @staticmethod
     def doSyllable(text):

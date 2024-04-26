@@ -1,10 +1,6 @@
 
 // reshaper
 
-// [M[ HEAD_BEGIN ]M]
-import haxe.iterators.StringIterator;
-// [M[ HEAD_FINISH ]M]
-
 enum UyHarp {
     BASH;
     YALGHUZ;

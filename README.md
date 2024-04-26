@@ -6,6 +6,8 @@
 
 ## 2. Qollaydighan tillar
 
+* [x] [Haxe](./example/example.hx)
+
 * [x] [C#](./example/example.cs)
 
 * [x] [Java](./example/Example.java)
@@ -50,10 +52,10 @@ fromLatin(text : String) : String // latin yeziqi parametiri : merhaba
 4. yekke harip we kunupka taxtisi ara aylandurush
 
 ```haxe
-// yekke herip : گ , Shift besildimu : true -> g
-toAlphabet(text : String, isSHiftPressed : Bool) : String
-// englizche herip : g , Shift besildimu : true -> گ
-fromAlphabet(alphabet : String, isSHiftPressed : Bool) : String
+// yekke herip : گ -> G
+toAlphabet(character : String) : String
+// englizche herip : g -> ە
+fromAlphabet(alphabet : String) : String
 ```
 
 5. sozni bughumgha ayrish
