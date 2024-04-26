@@ -35,5 +35,5 @@ local function publish_pip()
     os.execute("pip install twine")
     os.execute("cd " .. pipPath .. " & twine upload --skip-existing dist/*")
 end
-package_pip()
-publish_pip()
+-- package_pip()
+-- publish_pip()
