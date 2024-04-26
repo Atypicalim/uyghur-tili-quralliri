@@ -1,9 +1,9 @@
 // haxe tilida ishlitish misali
 
-// 1. hx hojjitini uzimizning tur xojjet xaltisidiki melum urungha kuchurwalimiz
+// 1. hx hojjitini mushu ulge bar xojjet xaltisigha kuchurwalimiz
 // 2. andin tuwendiki misaldek ishletsek bulidu
 
-import ../relase/UyghurLanguageTools
+import UyghurLanguageTools;
 
 @:keep
 @:expose
