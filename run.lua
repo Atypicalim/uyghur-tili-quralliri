@@ -114,7 +114,7 @@ end
 -- run target
 
 -- build_alpbets()
-build_tools(true)
-build_release()
+-- build_tools(true)
+-- build_release()
 -- build_npm(true)
 -- build_pip(false)
