@@ -1,4 +1,4 @@
---class-path ./
+--class-path ./build/
 --dce full
 UyghurLanguageTools
 
@@ -16,21 +16,15 @@ UyghurLanguageTools
 --next
 --php release/Tools_php
 --main UyghurLanguageTools
--cmd "php ./others/phar.php"
 
 --next
 --cs release/Tools_csharp
 --main UyghurLanguageTools
 -D dll
--cmd "cp release/Tools_csharp/bin/UyghurLanguageTools.dll release/"
--cmd "rm -rf release/Tools_csharp"
 
 --next
 # --lua release/UyghurLanguageTools.lua
 # -D lua-vanilla
-
---next
--cmd "cp ./UyghurLanguageTools.hx release/"
 
 # --next
 --interp

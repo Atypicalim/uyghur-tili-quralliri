@@ -1,9 +1,12 @@
 my-build-tools
 pure-lua-tools
-output
-/UyghurLanguageTools.hx
+
+output/
+build/
+
 *.pyc
 */Tools_php/
+*/Tools_csharp/
 
 packages/**/node_modules/
 packages/npm/*.js
