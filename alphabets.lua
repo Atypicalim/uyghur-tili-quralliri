@@ -2,6 +2,15 @@
     alphabets
 ]]
 
+
+print("\nalpabets build start:")
+
+package.path = package.path .. ";./pure-lua-tools/?.lua"
+package.path = package.path .. ";./../pure-lua-tools/?.lua"
+package.path = package.path .. ";./my-build-tools/?.lua"
+package.path = package.path .. ";./../my-build-tools/?.lua"
+local builder = require("builder")
+
 local ALPHABETS_MAP = {}
 
 local TYPES = {
@@ -166,27 +175,11 @@ end
 NAME_DATA_MAP["ALPHABETS"] = alphabets
 -- 
 
-local builder = builder.code {}
-local source = "./src/Alphabets.hx"
-local isSkip = {}
+for k,v in pairs(NAME_DATA_MAP) do
+    local path = "./build/" .. k .. ".txt";
+    print("alpabets write :", path)
+    files.write(path, v)
+end
 
-builder:setInput(source)
-builder:setComment("//")
-builder:onMacro(function(code, command)
-    local name, tp = unpack(string.explode(command, "_"))
-    if tp == "START" then
-        isSkip[name] = true
-        return string.format("// [M[ %s_START ]M]", name)
-    elseif tp == "END" then
-        isSkip[name] = false
-        return string.format("%s// [M[ %s_END ]M]", NAME_DATA_MAP[name], name)
-    end
-end)
-builder:onLine(function(line)
-    for i,v in pairs(isSkip) do
-        if v then return end
-    end
-    return line
-end)
-builder:setOutput(source)
-builder:start()
+print("alpabets build end!")
+
