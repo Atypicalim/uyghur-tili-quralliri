@@ -7,8 +7,7 @@ let builder = require("../my-build-tools");
 let files = builder.tools.files;
 let tools = builder.tools.tools;
 
-let child_process = require("child_process");
-
+//
 
 let buildDir = "./build";
 let releaseDir = "./release";
@@ -17,9 +16,138 @@ let mainName = "UyghurLanguageTools";
 let mainPath = buildDir + "/" + mainName + ".hx";
 files.mk_folder(buildDir);
 
+//
+
 let build_alpbets = () => {
-    tools.spawn('lua ./alphabets.lua');
-    
+    // 
+    console.log("\nbuild alpabets start:");
+    const space = " ";
+    const ALPHABETS_MAP = [];
+    const TYPES = {
+        MARKS: "MARKS",
+        COMPOUNDS: "COMPOUNDS",
+        VOWELS: "VOWELS",
+        CONSONANTS: "CONSONANTS",
+    };
+    //
+    let ALPHABET = (tp, ...arr) => arr.forEach((v) => ALPHABETS_MAP.push({
+        tp: tp,
+        nm: v[0],
+        idx: v[1],
+        ipa: v[2],
+        alpha: [v[3], v[4], v[5], v[6], v[7]], // [cts, uas, ucs, uns, uls]
+    }))
+    let M = (...args) => ALPHABET(TYPES.MARKS, ...args);
+    let V = (...args) => ALPHABET(TYPES.VOWELS, ...args);
+    let C = (...args) => ALPHABET(TYPES.CONSONANTS, ...args);
+    let K = (...args) => ALPHABET(TYPES.COMPOUNDS, ...args);
+    // Marks
+    M(
+        ["HEMZE", 0, "'", "'", "ئ", "'", "'", "'",],
+        ["COMMA", 0, ",", ",", "،", ",", ",", ",",],
+        ["EXCLA", 0, "!", "!", "!", "!", "!", "!",],
+        ["QUESS", 0, "?", "?", "؟", "?", "?", "?",],
+        ["COLON", 0, ";", ";", "؛", ";", ";", ";",]
+    )
+    // Vowels
+    V(
+        ["A", 1, "ɑ", "a", "ا", "a", "a", "a",],
+        ["AE", 2, "æ", "ä", "ە", "ә", "ə", "e"]
+    )
+    V(
+        ["O", 25, "", "o", "و", "о", "o", "o"],
+        ["U", 26, "", "u", "ۇ", "у", "u", "u"],
+        ["OO", 27, "", "ö", "ۆ", "ө", "ɵ", "ö"],
+        ["UU", 28, "", "ü", "ۈ", "ү", "ü", "ü"],
+        ["I", 31, "", "i", "ى", "и", "i", "i"],
+        ["E", 30, "", "e", "ې", "е", "e", "ë"]
+    )
+    // Consonants
+    C(
+        ["B", 3, "b", "b", "ب", "б", "b", "b"],
+        ["P", 4, "p", "p", "پ", "п", "p", "p"],
+        ["T", 5, "t", "t", "ت", "т", "t", "t"],
+        ["DJ", 6, "dʒ", "c", "ج", "җ", "j", "j"],
+        ["CH", 7, "tʃ", "ç", "چ", "ч", "q", "ch"],
+        ["X", 8, "x", "x", "خ", "х", "h", "x"],
+        ["D", 9, "d", "d", "د", "д", "d", "d"],
+        ["R", 10, "r", "r", "ر", "р", "r", "r"],
+        ["Z", 11, "z", "z", "ز", "з", "z", "z"],
+        ["J", 12, "ʒ", "j", "ژ", "ж", "ⱬ", "zh"],
+        ["S", 13, "s", "s", "س", "с", "s", "s"],
+        ["SH", 14, "ʃ", "ş", "ش", "ш", "x", "sh"],
+        ["GH", 15, "ɣ", "ğ", "غ", "ғ", "ƣ", "gh"],
+        ["F", 16, "f", "f", "ف", "ф", "f", "f"],
+        ["Q", 17, "q", "q", "ق", "қ", "ⱪ", "q"],
+        ["K", 18, "k", "k", "ك", "к", "k", "k"],
+        ["G", 19, "g", "g", "گ", "г", "g", "g"],
+        ["NG", 20, "ŋ", "ñ", "ڭ", "ң", "ng", "ng"],
+        ["L", 21, "l", "l", "ل", "л", "l", "l"],
+        ["M", 22, "m", "m", "م", "м", "m", "m"],
+        ["N", 23, "n", "n", "ن", "н", "n", "n"],
+        ["H", 24, "h", "h", "ھ", "һ", "ⱨ", "h"],
+        ["V", 29, "v", "v", "ۋ", "в", "v", "w"],
+        ["Y", 32, "j", "y", "ي", "й", "y", "y"]
+    )
+    // Compounds from Cyrillic
+    K(
+        ["YU", 0, "ju", "yu", "ي‍‍ۇ", "ю", "yu", "yu"],
+        ["YA", 0, "jɑ", "ya", "ي‍‍ا", "я", "ya", "ya"]
+    )
+    // write to haxe
+    const NAME_DATA_MAP = {};
+    const ALPHABET_KEYS = {
+        idx: ["Int", "alphabet order"],
+        tp: ["TYPES", "alphabet type"],
+        ipa: ["String", "reading sound"],
+        nm: ["NAMES", "english name"],
+        alpha: ["Array<String>", "language script"],
+    };
+    //
+    let types = null;
+    for (const [k, v] of Object.entries(TYPES)) {
+        types = (types ? types + "\n" : "") + space.repeat(4) + v + ";";
+    }
+    NAME_DATA_MAP["TYPES"] = types + "\n";
+    //
+    let names = null;
+    for (let i = 0; i < ALPHABETS_MAP.length; i++) {
+        const v = ALPHABETS_MAP[i];
+        names = (names ? names + "\n" : "") + space.repeat(4) + v.nm + ";";
+
+    }
+    NAME_DATA_MAP["NAMES"] = names + "\n";
+    //
+    const TEMPLATE_CONFIG = `// {0}
+    NAMES.{1} => {{2}
+    },\n`;
+    const TEMPLATE_PAIRS = `%s : %s,`;
+    let alphabets = "";
+    for (let index = 0; index < ALPHABETS_MAP.length; index++) {
+        const info = ALPHABETS_MAP[index];
+        let entry = "";
+        for (const [key, _] of Object.entries(ALPHABET_KEYS)) {
+            let value = info[key];
+            if (key === "tp") {
+                value = `TYPES.${value}`;
+            } else if (key === "nm") {
+                value = `NAMES.${value}`;
+            } else if (Array.isArray(value)) {
+                const items = value.map((v, i) => (i === 0 ? `"${v}"` : `, "${v}"`)).join("");
+                value = `[${items}]`;
+            } else if (typeof value === "number") {
+                value = `${value}`;
+            } else {
+                value = `"${value}"`;
+            }
+            entry += `\n${space.repeat(8)}${TEMPLATE_PAIRS.replace("%s", key).replace("%s", value)}`;
+        }
+        const conf = TEMPLATE_CONFIG.format(info.nm, info.nm, entry);
+        alphabets += `${conf}`;
+    }
+    NAME_DATA_MAP["ALPHABETS"] = alphabets;
+    // 
+    // process hx
     let bldr = builder.code({});
     let source = "./src/Alphabets.hx";
     let skipMap = new Map();
@@ -33,8 +161,7 @@ let build_alpbets = () => {
             return "// [M[ {0}_START ]M]".format(name)
         } else if (tp == "END") {
             skipMap.set(name, false);
-            let path = "./build/" + name + ".txt";
-            let content = files.read(path, "utf-8");
+            let content = NAME_DATA_MAP[name];
             return "{0}// [M[ {1}_END ]M]".format(content, name)
         }
     });
@@ -50,9 +177,11 @@ let build_alpbets = () => {
     });
     bldr.setOutput(source);
     bldr.start();
+    console.log("build alpabets end!");
 }
 
 let build_tools = (isRun) => {
+    console.log('\nbuild tools start:');
     let bldr = builder.code({});
     let target = mainPath;
     let heads = [];
@@ -84,6 +213,7 @@ let build_tools = (isRun) => {
     if (isRun) {
         tools.spawn("cd " + buildDir + " & haxe --main " + mainName + " --interp");
     }
+    console.log('build tools end!');
 }
 
 let build_release = () => {
@@ -150,9 +280,9 @@ let build_pip = (isPublish) => {
     console.log('\nbuild pip end!');
 }
 
-// run target
+//
 
-build_alpbets();
+// build_alpbets();
 // build_tools(true);
 // build_release();
 // build_npm(false);
