@@ -15,9 +15,9 @@ setup(
     long_description_content_type="text/markdown",
     license = "MIT Licence",
 
-    url = "https://github.com/kompasim/uyghur-tili-quralliri",
-    author = "kompasim",
-    author_email = "kompasim@163.com",
+    url = "https://github.com/atypicalim/uyghur-tili-quralliri",
+    author = "atypicalim",
+    author_email = "atypicalim@163.com",
 
     packages = find_packages(),
     include_package_data = True,

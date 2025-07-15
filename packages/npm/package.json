@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/kompasim/uyghur-tili-quralliri.git"
+    "url": "git+ssh://git@github.com/atypicalim/uyghur-tili-quralliri.git"
   },
   "keywords": [
     "uyghur",
@@ -19,10 +19,10 @@
     "language",
     "tools"
   ],
-  "author": "kompasim",
+  "author": "atypicalim",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kompasim/uyghur-tili-quralliri/issues"
+    "url": "https://github.com/atypicalim/uyghur-tili-quralliri/issues"
   },
-  "homepage": "https://kompasim.github.io/"
+  "homepage": "https://atypicalim.github.io/"
 }

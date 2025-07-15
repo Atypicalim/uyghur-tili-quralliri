@@ -280,6 +280,9 @@ def build_pip(is_publish):
 
 #################################################
 
+# haxelib install hxjava
+# haxelib install hxcs
+
 build_alphabets()
 build_tools(True)
 # build_release()

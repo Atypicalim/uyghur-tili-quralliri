@@ -19,4 +19,4 @@ Tools.main()
 
 ## 3. More
 
-> for more information please visit [github](https://github.com/kompasim/uyghur-tili-quralliri).
+> for more information please visit [github](https://github.com/atypicalim/uyghur-tili-quralliri).
