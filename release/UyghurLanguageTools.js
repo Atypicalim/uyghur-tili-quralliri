@@ -1171,7 +1171,7 @@ UyghurLanguageTools.writeNumber = function(text) {
 	return Numbers.write(text);
 };
 UyghurLanguageTools.main = function() {
-	console.log("UyghurLanguageTools.hx:1363:","Uyghur Language Tools (" + UyghurLanguageTools.getVersion() + "), for more infomation please visit https://github.com/kompasim");
+	console.log("UyghurLanguageTools.hx:1363:","Uyghur Language Tools (" + UyghurLanguageTools.getVersion() + "), for more infomation please visit https://github.com/atypicalim");
 };
 var haxe_IMap = function() { };
 haxe_IMap.__name__ = true;

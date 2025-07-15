@@ -64,7 +64,7 @@ class UyghurLanguageTools {
 
     static function main() {
         //
-        trace("Uyghur Language Tools (" + getVersion() + "), for more infomation please visit https://github.com/kompasim");
+        trace("Uyghur Language Tools (" + getVersion() + "), for more infomation please visit https://github.com/atypicalim");
         // trace("\n\n--->TEST:");
         // //
         // // converter
